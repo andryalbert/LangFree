@@ -1,0 +1,622 @@
+{
+  "rules": [
+    {
+      "pattern": "\\bI am agree\\b",
+      "replacement": "I agree",
+      "explanation_fr": "On ne dit pas 'I am agree' mais 'I agree'. Le verbe 'agree' ne s'utilise pas avec 'be'.",
+      "explanation_en_simple": "Say 'I agree', not 'I am agree'."
+    },
+    {
+      "pattern": "\\bI have (\\d+) years\\b",
+      "replacement": "I am $1 years old",
+      "explanation_fr": "Pour donner son âge, on utilise 'to be' et non 'have'.",
+      "explanation_en_simple": "Use 'I am [number] years old' for age."
+    },
+    {
+      "pattern": "\\bme name is\\b",
+      "replacement": "my name is",
+      "explanation_fr": "Le pronom possessif est 'my', pas 'me'.",
+      "explanation_en_simple": "Use 'my name is', not 'me name is'."
+    },
+    {
+      "pattern": "\\bhe have\\b",
+      "replacement": "he has",
+      "explanation_fr": "À la 3ème personne du singulier, on utilise 'has' et non 'have'.",
+      "explanation_en_simple": "Use 'he has', not 'he have'."
+    },
+    {
+      "pattern": "\\bshe have\\b",
+      "replacement": "she has",
+      "explanation_fr": "À la 3ème personne du singulier, on utilise 'has' et non 'have'.",
+      "explanation_en_simple": "Use 'she has', not 'she have'."
+    },
+    {
+      "pattern": "\\bit have\\b",
+      "replacement": "it has",
+      "explanation_fr": "À la 3ème personne du singulier, on utilise 'has' et non 'have'.",
+      "explanation_en_simple": "Use 'it has', not 'it have'."
+    },
+    {
+      "pattern": "\\bhe do\\b",
+      "replacement": "he does",
+      "explanation_fr": "À la 3ème personne du singulier, on utilise 'does' et non 'do'.",
+      "explanation_en_simple": "Use 'he does', not 'he do'."
+    },
+    {
+      "pattern": "\\bshe do\\b",
+      "replacement": "she does",
+      "explanation_fr": "À la 3ème personne du singulier, on utilise 'does' et non 'do'.",
+      "explanation_en_simple": "Use 'she does', not 'she do'."
+    },
+    {
+      "pattern": "\\bit do\\b",
+      "replacement": "it does",
+      "explanation_fr": "À la 3ème personne du singulier, on utilise 'does' et non 'do'.",
+      "explanation_en_simple": "Use 'it does', not 'it do'."
+    },
+    {
+      "pattern": "\\bI am go\\b",
+      "replacement": "I am going",
+      "explanation_fr": "Pour exprimer une action en cours, utilisez le présent continu ('I am going').",
+      "explanation_en_simple": "Use 'I am going' for present continuous."
+    },
+    {
+      "pattern": "\\bI am (come|go|walk|run|eat|drink|sleep|work|study)\\b",
+      "replacement": "I am $1ing",
+      "explanation_fr": "Pour une action en cours, ajoutez '-ing' au verbe.",
+      "explanation_en_simple": "Add '-ing' for present continuous."
+    },
+    {
+      "pattern": "\\bgo to home\\b",
+      "replacement": "go home",
+      "explanation_fr": "Avec 'home', on n'utilise pas 'to'.",
+      "explanation_en_simple": "Say 'go home', not 'go to home'."
+    },
+    {
+      "pattern": "\\bcome to home\\b",
+      "replacement": "come home",
+      "explanation_fr": "Avec 'home', on n'utilise pas 'to'.",
+      "explanation_en_simple": "Say 'come home', not 'come to home'."
+    },
+    {
+      "pattern": "\\bsince (\\d+) years\\b",
+      "replacement": "for $1 years",
+      "explanation_fr": "Pour une durée, utilisez 'for' et non 'since'. 'Since' s'utilise avec un point de départ dans le temps.",
+      "explanation_en_simple": "Use 'for' for duration, 'since' for a starting point."
+    },
+    {
+      "pattern": "\\bsince (\\d+) (months|days|hours)\\b",
+      "replacement": "for $1 $2",
+      "explanation_fr": "Pour une durée, utilisez 'for' et non 'since'.",
+      "explanation_en_simple": "Use 'for' for duration."
+    },
+    {
+      "pattern": "\\bI will to\\b",
+      "replacement": "I will",
+      "explanation_fr": "Après 'will', on met directement le verbe sans 'to'.",
+      "explanation_en_simple": "After 'will', use the verb directly without 'to'."
+    },
+    {
+      "pattern": "\\bmore better\\b",
+      "replacement": "better",
+      "explanation_fr": "'Better' est déjà le comparatif de 'good'. On ne dit pas 'more better'.",
+      "explanation_en_simple": "'Better' is already comparative. Don't say 'more better'."
+    },
+    {
+      "pattern": "\\bmore good\\b",
+      "replacement": "better",
+      "explanation_fr": "Le comparatif de 'good' est 'better'.",
+      "explanation_en_simple": "The comparative of 'good' is 'better'."
+    },
+    {
+      "pattern": "\\bthe people is\\b",
+      "replacement": "the people are",
+      "explanation_fr": "'People' est un pluriel, donc on utilise 'are' et non 'is'.",
+      "explanation_en_simple": "'People' is plural, so use 'are'."
+    },
+    {
+      "pattern": "\\bI am student\\b",
+      "replacement": "I am a student",
+      "explanation_fr": "Il manque l'article 'a' devant 'student'.",
+      "explanation_en_simple": "Add 'a' before 'student'."
+    },
+    {
+      "pattern": "\\bI am teacher\\b",
+      "replacement": "I am a teacher",
+      "explanation_fr": "Il manque l'article 'a' devant 'teacher'.",
+      "explanation_en_simple": "Add 'a' before 'teacher'."
+    },
+    {
+      "pattern": "\\bI am doctor\\b",
+      "replacement": "I am a doctor",
+      "explanation_fr": "Il manque l'article 'a' devant 'doctor'.",
+      "explanation_en_simple": "Add 'a' before 'doctor'."
+    },
+    {
+      "pattern": "\\bHe is student\\b",
+      "replacement": "He is a student",
+      "explanation_fr": "Il manque l'article 'a' devant 'student'.",
+      "explanation_en_simple": "Add 'a' before 'student'."
+    },
+    {
+      "pattern": "\\bShe is teacher\\b",
+      "replacement": "She is a teacher",
+      "explanation_fr": "Il manque l'article 'a' devant 'teacher'.",
+      "explanation_en_simple": "Add 'a' before 'teacher'."
+    },
+    {
+      "pattern": "\\bI am coming from\\b",
+      "replacement": "I come from",
+      "explanation_fr": "Pour dire d'où l'on vient, utilisez le présent simple 'I come from' et non le présent continu.",
+      "explanation_en_simple": "Use 'I come from' for origin, not 'I am coming from'."
+    },
+    {
+      "pattern": "\\bI want that you\\b",
+      "replacement": "I want you to",
+      "explanation_fr": "Après 'want', on utilise 'want [person] to [verb]' et non 'want that'.",
+      "explanation_en_simple": "Use 'I want you to', not 'I want that you'."
+    },
+    {
+      "pattern": "\\bhow much years\\b",
+      "replacement": "how old",
+      "explanation_fr": "Pour demander l'âge, on dit 'how old' et non 'how much years'.",
+      "explanation_en_simple": "Ask 'how old' for age, not 'how much years'."
+    },
+    {
+      "pattern": "\\bdo you can\\b",
+      "replacement": "can you",
+      "explanation_fr": "On ne met pas 'do' avant 'can'. 'Can' est déjà un verbe modal.",
+      "explanation_en_simple": "Don't use 'do' with 'can'. Just say 'can you'."
+    },
+    {
+      "pattern": "\\bmake a photo\\b",
+      "replacement": "take a photo",
+      "explanation_fr": "On dit 'take a photo' et non 'make a photo'.",
+      "explanation_en_simple": "Say 'take a photo', not 'make a photo'."
+    },
+    {
+      "pattern": "\\bmake a picture\\b",
+      "replacement": "take a picture",
+      "explanation_fr": "On dit 'take a picture' et non 'make a picture'.",
+      "explanation_en_simple": "Say 'take a picture', not 'make a picture'."
+    },
+    {
+      "pattern": "\\bmake sport\\b",
+      "replacement": "do sport",
+      "explanation_fr": "On dit 'do sport' et non 'make sport'.",
+      "explanation_en_simple": "Say 'do sport', not 'make sport'."
+    },
+    {
+      "pattern": "\\bmake exercises\\b",
+      "replacement": "do exercises",
+      "explanation_fr": "On dit 'do exercises' et non 'make exercises'.",
+      "explanation_en_simple": "Say 'do exercises', not 'make exercises'."
+    },
+    {
+      "pattern": "\\bmake homework\\b",
+      "replacement": "do homework",
+      "explanation_fr": "On dit 'do homework' et non 'make homework'.",
+      "explanation_en_simple": "Say 'do homework', not 'make homework'."
+    },
+    {
+      "pattern": "\\bsay me\\b",
+      "replacement": "tell me",
+      "explanation_fr": "Quand on précise à qui on parle, on utilise 'tell' et non 'say'.",
+      "explanation_en_simple": "Use 'tell me' when specifying the person."
+    },
+    {
+      "pattern": "\\bsay him\\b",
+      "replacement": "tell him",
+      "explanation_fr": "Quand on précise à qui on parle, on utilise 'tell' et non 'say'.",
+      "explanation_en_simple": "Use 'tell him' when specifying the person."
+    },
+    {
+      "pattern": "\\bsay her\\b",
+      "replacement": "tell her",
+      "explanation_fr": "Quand on précise à qui on parle, on utilise 'tell' et non 'say'.",
+      "explanation_en_simple": "Use 'tell her' when specifying the person."
+    },
+    {
+      "pattern": "\\bsay them\\b",
+      "replacement": "tell them",
+      "explanation_fr": "Quand on précise à qui on parle, on utilise 'tell' et non 'say'.",
+      "explanation_en_simple": "Use 'tell them' when specifying the person."
+    },
+    {
+      "pattern": "\\bI speak very good\\b",
+      "replacement": "I speak very well",
+      "explanation_fr": "Pour décrire comment on fait quelque chose, on utilise 'well' et non 'good'.",
+      "explanation_en_simple": "Use 'well' to describe how you do something."
+    },
+    {
+      "pattern": "\\bhe play good\\b",
+      "replacement": "he plays well",
+      "explanation_fr": "Pour décrire comment on fait quelque chose, on utilise 'well' et non 'good'.",
+      "explanation_en_simple": "Use 'well' to describe how someone does something."
+    },
+    {
+      "pattern": "\\bshe work good\\b",
+      "replacement": "she works well",
+      "explanation_fr": "Pour décrire comment on fait quelque chose, on utilise 'well' et non 'good'.",
+      "explanation_en_simple": "Use 'well' to describe how someone does something."
+    },
+    {
+      "pattern": "\\bits my\\b",
+      "replacement": "it's my",
+      "explanation_fr": "La contraction de 'it is' est 'it's' avec apostrophe.",
+      "explanation_en_simple": "Use 'it's' for 'it is'."
+    },
+    {
+      "pattern": "\\bits his\\b",
+      "replacement": "it's his",
+      "explanation_fr": "La contraction de 'it is' est 'it's' avec apostrophe.",
+      "explanation_en_simple": "Use 'it's' for 'it is'."
+    },
+    {
+      "pattern": "\\bits her\\b",
+      "replacement": "it's her",
+      "explanation_fr": "La contraction de 'it is' est 'it's' avec apostrophe.",
+      "explanation_en_simple": "Use 'it's' for 'it is'."
+    },
+    {
+      "pattern": "\\bits a\\b",
+      "replacement": "it's a",
+      "explanation_fr": "La contraction de 'it is' est 'it's' avec apostrophe.",
+      "explanation_en_simple": "Use 'it's' for 'it is'."
+    },
+    {
+      "pattern": "\\bits the\\b",
+      "replacement": "it's the",
+      "explanation_fr": "La contraction de 'it is' est 'it's' avec apostrophe.",
+      "explanation_en_simple": "Use 'it's' for 'it is'."
+    },
+    {
+      "pattern": "\\bits your\\b",
+      "replacement": "it's your",
+      "explanation_fr": "La contraction de 'it is' est 'it's' avec apostrophe.",
+      "explanation_en_simple": "Use 'it's' for 'it is'."
+    },
+    {
+      "pattern": "\\bits my car\\b",
+      "replacement": "it's my car",
+      "explanation_fr": "La contraction de 'it is' est 'it's' avec apostrophe.",
+      "explanation_en_simple": "Use 'it's' for 'it is'."
+    },
+    {
+      "pattern": "\\bthere house\\b",
+      "replacement": "their house",
+      "explanation_fr": "'Their' signifie 'leur' (possessif), 'there' signifie 'là-bas'.",
+      "explanation_en_simple": "Use 'their' for possession, 'there' for place."
+    },
+    {
+      "pattern": "\\bthere car\\b",
+      "replacement": "their car",
+      "explanation_fr": "'Their' signifie 'leur' (possessif), 'there' signifie 'là-bas'.",
+      "explanation_en_simple": "Use 'their' for possession, 'there' for place."
+    },
+    {
+      "pattern": "\\bthere names\\b",
+      "replacement": "their names",
+      "explanation_fr": "'Their' signifie 'leur' (possessif), 'there' signifie 'là-bas'.",
+      "explanation_en_simple": "Use 'their' for possession, 'there' for place."
+    },
+    {
+      "pattern": "\\bto go at\\b",
+      "replacement": "to go to",
+      "explanation_fr": "Avec 'go', on utilise 'to' et non 'at' pour une destination.",
+      "explanation_en_simple": "Use 'go to' for destination, not 'go at'."
+    },
+    {
+      "pattern": "\\bto arrive at\\b",
+      "replacement": "to arrive in",
+      "explanation_fr": "Pour les villes et pays, on utilise 'arrive in'. 'Arrive at' s'utilise pour les lieux précis.",
+      "explanation_en_simple": "Use 'arrive in' for cities and countries."
+    },
+    {
+      "pattern": "\\bin the morning\\b",
+      "replacement": "in the morning",
+      "explanation_fr": "Cette règle est correcte. (Règle de validation)",
+      "explanation_en_simple": "This is correct."
+    },
+    {
+      "pattern": "\\bat the morning\\b",
+      "replacement": "in the morning",
+      "explanation_fr": "On dit 'in the morning' et non 'at the morning'.",
+      "explanation_en_simple": "Say 'in the morning', not 'at the morning'."
+    },
+    {
+      "pattern": "\\bat the evening\\b",
+      "replacement": "in the evening",
+      "explanation_fr": "On dit 'in the evening' et non 'at the evening'.",
+      "explanation_en_simple": "Say 'in the evening', not 'at the evening'."
+    },
+    {
+      "pattern": "\\bin night\\b",
+      "replacement": "at night",
+      "explanation_fr": "On dit 'at night' et non 'in night'.",
+      "explanation_en_simple": "Say 'at night', not 'in night'."
+    },
+    {
+      "pattern": "\\bI have been to\\b",
+      "replacement": "I have been to",
+      "explanation_fr": "Cette règle est correcte. (Règle de validation)",
+      "explanation_en_simple": "This is correct."
+    },
+    {
+      "pattern": "\\bI have gone to\\b",
+      "replacement": "I have been to",
+      "explanation_fr": "Pour dire que vous êtes allé quelque chose et que vous en êtes revenu, utilisez 'have been to'.",
+      "explanation_en_simple": "Use 'have been to' when you returned."
+    },
+    {
+      "pattern": "\\blook at\\b",
+      "replacement": "look at",
+      "explanation_fr": "Cette règle est correcte. (Règle de validation)",
+      "explanation_en_simple": "This is correct."
+    },
+    {
+      "pattern": "\\bwatch at\\b",
+      "replacement": "watch",
+      "explanation_fr": "'Watch' ne se construit pas avec 'at'. On dit simplement 'watch'.",
+      "explanation_en_simple": "Don't use 'at' with 'watch'. Just say 'watch'."
+    },
+    {
+      "pattern": "\\blisten at\\b",
+      "replacement": "listen to",
+      "explanation_fr": "'Listen' se construit avec 'to' et non 'at'.",
+      "explanation_en_simple": "Use 'listen to', not 'listen at'."
+    },
+    {
+      "pattern": "\\bdepend of\\b",
+      "replacement": "depend on",
+      "explanation_fr": "'Depend' se construit avec 'on' et non 'of'.",
+      "explanation_en_simple": "Use 'depend on', not 'depend of'."
+    },
+    {
+      "pattern": "\\bafraid of\\b",
+      "replacement": "afraid of",
+      "explanation_fr": "Cette règle est correcte. (Règle de validation)",
+      "explanation_en_simple": "This is correct."
+    },
+    {
+      "pattern": "\\bafraid from\\b",
+      "replacement": "afraid of",
+      "explanation_fr": "'Afraid' se construit avec 'of' et non 'from'.",
+      "explanation_en_simple": "Use 'afraid of', not 'afraid from'."
+    },
+    {
+      "pattern": "\\bmarried with\\b",
+      "replacement": "married to",
+      "explanation_fr": "'Married' se construit avec 'to' et non 'with'.",
+      "explanation_en_simple": "Use 'married to', not 'married with'."
+    },
+    {
+      "pattern": "\\binterested on\\b",
+      "replacement": "interested in",
+      "explanation_fr": "'Interested' se construit avec 'in' et non 'on'.",
+      "explanation_en_simple": "Use 'interested in', not 'interested on'."
+    },
+    {
+      "pattern": "\\bgood in\\b",
+      "replacement": "good at",
+      "explanation_fr": "Pour dire qu'on est doué dans quelque chose, on utilise 'good at'.",
+      "explanation_en_simple": "Use 'good at' for skills, not 'good in'."
+    },
+    {
+      "pattern": "\\bI am agree with\\b",
+      "replacement": "I agree with",
+      "explanation_fr": "On ne dit pas 'I am agree' mais 'I agree'.",
+      "explanation_en_simple": "Say 'I agree with', not 'I am agree with'."
+    },
+    {
+      "pattern": "\\bvery like\\b",
+      "replacement": "really like",
+      "explanation_fr": "On utilise 'really' pour renforcer 'like', pas 'very'.",
+      "explanation_en_simple": "Use 'really like', not 'very like'."
+    },
+    {
+      "pattern": "\\bvery love\\b",
+      "replacement": "really love",
+      "explanation_fr": "On utilise 'really' pour renforcer 'love', pas 'very'.",
+      "explanation_en_simple": "Use 'really love', not 'very love'."
+    },
+    {
+      "pattern": "\\bvery enjoy\\b",
+      "replacement": "really enjoy",
+      "explanation_fr": "On utilise 'really' pour renforcer 'enjoy', pas 'very'.",
+      "explanation_en_simple": "Use 'really enjoy', not 'very enjoy'."
+    },
+    {
+      "pattern": "\\bI am living here since\\b",
+      "replacement": "I have lived here since",
+      "explanation_fr": "Pour une action qui a commencé dans le passé et continue, utilisez le present perfect.",
+      "explanation_en_simple": "Use present perfect for actions continuing from past."
+    },
+    {
+      "pattern": "\\bI am working here since\\b",
+      "replacement": "I have worked here since",
+      "explanation_fr": "Pour une action qui a commencé dans le passé et continue, utilisez le present perfect.",
+      "explanation_en_simple": "Use present perfect for actions continuing from past."
+    },
+    {
+      "pattern": "\\bI am knowing\\b",
+      "replacement": "I know",
+      "explanation_fr": "'Know' est un verbe d'état, on ne s'en sert pas au présent continu.",
+      "explanation_en_simple": "'Know' is a stative verb, don't use continuous."
+    },
+    {
+      "pattern": "\\bI am understanding\\b",
+      "replacement": "I understand",
+      "explanation_fr": "'Understand' est un verbe d'état, on ne s'en sert pas au présent continu.",
+      "explanation_en_simple": "'Understand' is a stative verb, don't use continuous."
+    },
+    {
+      "pattern": "\\bI am liking\\b",
+      "replacement": "I like",
+      "explanation_fr": "'Like' est un verbe d'état, on ne s'en sert pas au présent continu.",
+      "explanation_en_simple": "'Like' is a stative verb, don't use continuous."
+    },
+    {
+      "pattern": "\\bI am wanting\\b",
+      "replacement": "I want",
+      "explanation_fr": "'Want' est un verbe d'état, on ne s'en sert pas au présent continu.",
+      "explanation_en_simple": "'Want' is a stative verb, don't use continuous."
+    },
+    {
+      "pattern": "\\bI am loving\\b",
+      "replacement": "I love",
+      "explanation_fr": "'Love' est un verbe d'état, on ne s'en sert normalement pas au présent continu.",
+      "explanation_en_simple": "'Love' is a stative verb, don't use continuous."
+    },
+    {
+      "pattern": "\\bI am hating\\b",
+      "replacement": "I hate",
+      "explanation_fr": "'Hate' est un verbe d'état, on ne s'en sert pas au présent continu.",
+      "explanation_en_simple": "'Hate' is a stative verb, don't use continuous."
+    },
+    {
+      "pattern": "\\bI am believing\\b",
+      "replacement": "I believe",
+      "explanation_fr": "'Believe' est un verbe d'état, on ne s'en sert pas au présent continu.",
+      "explanation_en_simple": "'Believe' is a stative verb, don't use continuous."
+    },
+    {
+      "pattern": "\\bthe informations\\b",
+      "replacement": "the information",
+      "explanation_fr": "'Information' est un nom indénombrable en anglais, il n'a pas de pluriel.",
+      "explanation_en_simple": "'Information' is uncountable, no plural."
+    },
+    {
+      "pattern": "\\bmany informations\\b",
+      "replacement": "much information",
+      "explanation_fr": "'Information' est un nom indénombrable, on utilise 'much' et non 'many'.",
+      "explanation_en_simple": "Use 'much information', not 'many informations'."
+    },
+    {
+      "pattern": "\\ba informations\\b",
+      "replacement": "some information",
+      "explanation_fr": "'Information' est un nom indénombrable, on utilise 'some' et non 'a'.",
+      "explanation_en_simple": "Use 'some information', not 'a informations'."
+    },
+    {
+      "pattern": "\\bthe advices\\b",
+      "replacement": "the advice",
+      "explanation_fr": "'Advice' est un nom indénombrable en anglais, il n'a pas de pluriel.",
+      "explanation_en_simple": "'Advice' is uncountable, no plural."
+    },
+    {
+      "pattern": "\\bmany advices\\b",
+      "replacement": "much advice",
+      "explanation_fr": "'Advice' est un nom indénombrable, on utilise 'much' et non 'many'.",
+      "explanation_en_simple": "Use 'much advice', not 'many advices'."
+    },
+    {
+      "pattern": "\\ba news\\b",
+      "replacement": "a piece of news",
+      "explanation_fr": "'News' est un nom indénombrable. Pour une nouvelle, on dit 'a piece of news'.",
+      "explanation_en_simple": "Use 'a piece of news', 'news' is uncountable."
+    },
+    {
+      "pattern": "\\bthe furnitures\\b",
+      "replacement": "the furniture",
+      "explanation_fr": "'Furniture' est un nom indénombrable en anglais, il n'a pas de pluriel.",
+      "explanation_en_simple": "'Furniture' is uncountable, no plural."
+    },
+    {
+      "pattern": "\\bmany furnitures\\b",
+      "replacement": "much furniture",
+      "explanation_fr": "'Furniture' est un nom indénombrable, on utilise 'much' et non 'many'.",
+      "explanation_en_simple": "Use 'much furniture', not 'many furnitures'."
+    },
+    {
+      "pattern": "\\bthe homeworks\\b",
+      "replacement": "the homework",
+      "explanation_fr": "'Homework' est un nom indénombrable en anglais, il n'a pas de pluriel.",
+      "explanation_en_simple": "'Homework' is uncountable, no plural."
+    },
+    {
+      "pattern": "\\bmany homeworks\\b",
+      "replacement": "much homework",
+      "explanation_fr": "'Homework' est un nom indénombrable, on utilise 'much' et non 'many'.",
+      "explanation_en_simple": "Use 'much homework', not 'many homeworks'."
+    },
+    {
+      "pattern": "\\bthe evidences\\b",
+      "replacement": "the evidence",
+      "explanation_fr": "'Evidence' est un nom indénombrable en anglais, il n'a pas de pluriel.",
+      "explanation_en_simple": "'Evidence' is uncountable, no plural."
+    },
+    {
+      "pattern": "\\bmany evidences\\b",
+      "replacement": "much evidence",
+      "explanation_fr": "'Evidence' est un nom indénombrable, on utilise 'much' et non 'many'.",
+      "explanation_en_simple": "Use 'much evidence', not 'many evidences'."
+    },
+    {
+      "pattern": "\\bthe luggages\\b",
+      "replacement": "the luggage",
+      "explanation_fr": "'Luggage' est un nom indénombrable en anglais, il n'a pas de pluriel.",
+      "explanation_en_simple": "'Luggage' is uncountable, no plural."
+    },
+    {
+      "pattern": "\\bmany luggages\\b",
+      "replacement": "much luggage",
+      "explanation_fr": "'Luggage' est un nom indénombrable, on utilise 'much' et non 'many'.",
+      "explanation_en_simple": "Use 'much luggage', not 'many luggages'."
+    },
+    {
+      "pattern": "\\bthe traffics\\b",
+      "replacement": "the traffic",
+      "explanation_fr": "'Traffic' est un nom indénombrable en anglais, il n'a pas de pluriel.",
+      "explanation_en_simple": "'Traffic' is uncountable, no plural."
+    },
+    {
+      "pattern": "\\bthe weathers\\b",
+      "replacement": "the weather",
+      "explanation_fr": "'Weather' est un nom indénombrable en anglais, il n'a pas de pluriel.",
+      "explanation_en_simple": "'Weather' is uncountable, no plural."
+    },
+    {
+      "pattern": "\\ba weather\\b",
+      "replacement": "some weather",
+      "explanation_fr": "'Weather' est un nom indénombrable, on utilise 'some' et non 'a'.",
+      "explanation_en_simple": "Use 'some weather', not 'a weather'."
+    },
+    {
+      "pattern": "\\bthe money\\b",
+      "replacement": "money",
+      "explanation_fr": "Cette règle est correcte. (Règle de validation)",
+      "explanation_en simple": "This is correct."
+    },
+    {
+      "pattern": "\\ba money\\b",
+      "replacement": "some money",
+      "explanation_fr": "'Money' est un nom indénombrable, on utilise 'some' et non 'a'.",
+      "explanation_en_simple": "Use 'some money', not 'a money'."
+    },
+    {
+      "pattern": "\\bmany money\\b",
+      "replacement": "much money",
+      "explanation_fr": "'Money' est un nom indénombrable, on utilise 'much' et non 'many'.",
+      "explanation_en_simple": "Use 'much money', not 'many money'."
+    },
+    {
+      "pattern": "\\bthe progress\\b",
+      "replacement": "progress",
+      "explanation_fr": "Cette règle est correcte. (Règle de validation)",
+      "explanation_en_simple": "This is correct."
+    },
+    {
+      "pattern": "\\ba progress\\b",
+      "replacement": "some progress",
+      "explanation_fr": "'Progress' est un nom indénombrable, on utilise 'some' et non 'a'.",
+      "explanation_en_simple": "Use 'some progress', not 'a progress'."
+    },
+    {
+      "pattern": "\\bmany progresses\\b",
+      "replacement": "much progress",
+      "explanation_fr": "'Progress' est un nom indénombrable, on utilise 'much' et non 'many'.",
+      "explanation_en_simple": "Use 'much progress', not 'many progresses'."
+    }
+  ]
+}

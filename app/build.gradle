@@ -14,10 +14,6 @@ android {
         versionName "1.0"
 
         multiDexEnabled true
-        
-        ndk {
-            abiFilters 'armeabi-v7a', 'arm64-v8a'
-        }
     }
 
     buildTypes {
@@ -35,22 +31,6 @@ android {
     buildFeatures {
         viewBinding true
     }
-
-    externalNativeBuild {
-        cmake {
-            cppFlags "-std=c++17"
-            arguments "-DANDROID_STL=c++_shared"
-        }
-    }
-
-    defaultConfig {
-        externalNativeBuild {
-            cmake {
-                cFlags "-D__STDC_FORMAT_MACROS"
-                cppFlags "-std=c++17"
-            }
-        }
-    }
 }
 
 dependencies {
@@ -65,11 +45,4 @@ dependencies {
     
     // Gson for JSON parsing
     implementation 'com.google.code.gson:gson:2.10.1'
-}
-
-externalNativeBuild {
-    cmake {
-        path file('src/main/cpp/CMakeLists.txt')
-        version '3.22.1'
-    }
 }

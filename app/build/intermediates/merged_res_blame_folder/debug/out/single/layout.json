@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "com.langfree.app-mergeDebugResources-31:/layout/activity_settings.xml",
+        "source": "com.langfree.app-main-34:/layout/activity_settings.xml"
+    },
+    {
+        "merged": "com.langfree.app-mergeDebugResources-31:/layout/activity_installation.xml",
+        "source": "com.langfree.app-main-34:/layout/activity_installation.xml"
+    },
+    {
+        "merged": "com.langfree.app-mergeDebugResources-31:/layout/item_message.xml",
+        "source": "com.langfree.app-main-34:/layout/item_message.xml"
+    },
+    {
+        "merged": "com.langfree.app-mergeDebugResources-31:/layout/item_vocabulary.xml",
+        "source": "com.langfree.app-main-34:/layout/item_vocabulary.xml"
+    },
+    {
+        "merged": "com.langfree.app-mergeDebugResources-31:/layout/activity_main.xml",
+        "source": "com.langfree.app-main-34:/layout/activity_main.xml"
+    }
+]
