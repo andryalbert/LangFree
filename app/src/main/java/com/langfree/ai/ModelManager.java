@@ -55,7 +55,8 @@ public class ModelManager {
      * Retourne le fichier du modèle LLM
      */
     public File getLlmModelFile() {
-        return new File(getModelsDir(), LLM_MODEL_DIR, getModelFileName());
+        File llmDir = new File(getModelsDir(), LLM_MODEL_DIR);
+        return new File(llmDir, getModelFileName());
     }
     
     /**

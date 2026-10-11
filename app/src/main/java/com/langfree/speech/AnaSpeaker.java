@@ -23,7 +23,7 @@ public class AnaSpeaker implements TextToSpeech.OnInitListener {
         void onError(String error);
     }
     
-    private AnaSpeaker(Context context) {
+    public AnaSpeaker(Context context) {
         this.context = context.getApplicationContext();
         tts = new TextToSpeech(context, this);
     }

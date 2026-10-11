@@ -130,7 +130,7 @@ public class VoskRecognizer {
         }
         
         if (recognizer != null) {
-            recognizer.free();
+            // Vosk Android SDK gère la libération automatiquement
             recognizer = null;
         }
     }
