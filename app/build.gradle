@@ -1,0 +1,75 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.langfree'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.langfree"
+        minSdk 21
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+
+        multiDexEnabled true
+        
+        ndk {
+            abiFilters 'armeabi-v7a', 'arm64-v8a'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+
+    externalNativeBuild {
+        cmake {
+            cppFlags "-std=c++17"
+            arguments "-DANDROID_STL=c++_shared"
+        }
+    }
+
+    defaultConfig {
+        externalNativeBuild {
+            cmake {
+                cFlags "-D__STDC_FORMAT_MACROS"
+                cppFlags "-std=c++17"
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.recyclerview:recyclerview:1.3.2'
+    implementation 'androidx.multidex:multidex:2.0.1'
+    
+    // Vosk for speech recognition
+    implementation 'com.alphacephei:vosk-android:0.3.32'
+    
+    // Gson for JSON parsing
+    implementation 'com.google.code.gson:gson:2.10.1'
+}
+
+externalNativeBuild {
+    cmake {
+        path file('src/main/cpp/CMakeLists.txt')
+        version '3.22.1'
+    }
+}

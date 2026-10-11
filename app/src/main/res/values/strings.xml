@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">LangFree</string>
+    
+    <!-- Écran principal -->
+    <string name="welcome_message">Bonjour ! Je suis Ana. Parlez-moi en anglais pour pratiquer.</string>
+    <string name="listening">Je vous écoute…</string>
+    <string name="thinking">Ana réfléchit…</string>
+    <string name="speaking">Ana parle…</string>
+    <string name="send">Envoyer</string>
+    <string name="type_message">Écrivez en anglais…</string>
+    <string name="cancel">Annuler</string>
+    <string name="nothing_heard">Je n\'ai rien entendu, réessayez</string>
+    <string name="responding_in">Je réponds dans %d…</string>
+    <string name="speak_louder">Parlez plus fort</string>
+    <string name="enable_micro">Activez le micro dans les réglages</string>
+    <string name="free_space">Libérez de l\'espace sur votre téléphone</string>
+    
+    <!-- Correction -->
+    <string name="corrected">Corrigé</string>
+    <string name="well_done">Bien joué !</string>
+    <string name="keep">Garder</string>
+    <string name="explanation">Explication</string>
+    
+    <!-- Écran installation -->
+    <string name="install_models">Installer (une seule fois, avec internet)</string>
+    <string name="already_have_files">J\'ai déjà les fichiers</string>
+    <string name="downloading">Téléchargement…</string>
+    <string name="download_complete">Téléchargement terminé !</string>
+    <string name="download_failed">Échec du téléchargement</string>
+    <string name="checking_space">Vérification de l\'espace…</string>
+    <string name="not_enough_space">Pas assez d\'espace libre</string>
+    <string name="installing">Installation…</string>
+    <string name="ready">Prêt !</string>
+    <string name="download_progress">%d%%</string>
+    
+    <!-- Écran réglages -->
+    <string name="settings">Réglages</string>
+    <string name="level">Niveau</string>
+    <string name="level_a1">A1 - Débutant</string>
+    <string name="level_a2">A2 - Élémentaire</string>
+    <string name="level_b1">B1 - Intermédiaire</string>
+    <string name="level_b2">B2 - Avancé</string>
+    <string name="explanation_language">Langue des explications</string>
+    <string name="french">Français</string>
+    <string name="english_simple">Anglais simple</string>
+    <string name="none">Aucune</string>
+    <string name="voice_speed">Vitesse de la voix</string>
+    <string name="silence_delay">Délai de silence</string>
+    <string name="seconds">%d secondes</string>
+    <string name="mic_sensitivity">Sensibilité du micro</string>
+    <string name="low">Faible</string>
+    <string name="normal">Normale</string>
+    <string name="high">Élevée</string>
+    <string name="model_profile">Profil de modèle</string>
+    <string name="profile_ultra_fast">Ultra rapide (petit téléphone)</string>
+    <string name="profile_fast">Rapide (téléphone standard)</string>
+    <string name="read_correction">Ana lit la correction à voix haute</string>
+    <string name="clear_history">Effacer l\'historique</string>
+    <string name="clear_history_confirm">Voulez-vous vraiment effacer tout l\'historique ?</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    
+    <!-- Thèmes -->
+    <string name="theme">Thème</string>
+    <string name="free_conversation">Conversation libre</string>
+    <string name="daily_life">Vie quotidienne</string>
+    <string name="restaurant">Restaurant</string>
+    <string name="travel">Voyage</string>
+    <string name="work">Travail</string>
+    <string name="job_interview">Entretien d\'embauche</string>
+    
+    <!-- Carnet de vocabulaire -->
+    <string name="vocabulary">Carnet de vocabulaire</string>
+    <string name="no_vocabulary">Pas de mots enregistrés</string>
+    
+    <!-- Permissions -->
+    <string name="mic_permission_title">Permission du micro</string>
+    <string name="mic_permission_message">Cette application a besoin d\'accéder à votre micro pour vous entendre parler.</string>
+    <string name="grant">Autoriser</string>
+    <string name="deny">Refuser</string>
+    
+    <!-- Erreurs -->
+    <string name="error">Erreur</string>
+    <string name="model_not_loaded">Modèle non chargé. Réinstallez l\'application.</string>
+    <string name="tts_not_available">Voix anglaise non disponible. Installez les données vocales.</string>
+    <string name="install_tts">Installer</string>
+    
+    <!-- Tableau des thèmes pour le Spinner -->
+    <string-array name="themes_array">
+        <item>Conversation libre</item>
+        <item>Vie quotidienne</item>
+        <item>Restaurant</item>
+        <item>Voyage</item>
+        <item>Travail</item>
+        <item>Entretien d\'embauche</item>
+    </string-array>
+    
+    <!-- Tableau des niveaux -->
+    <string-array name="levels_array">
+        <item>A1</item>
+        <item>A2</item>
+        <item>B1</item>
+        <item>B2</item>
+    </string-array>
+    
+    <!-- Tableau des langues d'explication -->
+    <string-array name="explanation_languages_array">
+        <item>Français</item>
+        <item>Anglais simple</item>
+        <item>Aucune</item>
+    </string-array>
+    
+    <!-- Tableau des sensibilités -->
+    <string-array name="sensitivity_array">
+        <item>Faible</item>
+        <item>Normale</item>
+        <item>Élevée</item>
+    </string-array>
+    
+    <!-- Tableau des profils de modèle -->
+    <string-array name="model_profiles_array">
+        <item>Ultra rapide</item>
+        <item>Rapide</item>
+    </string-array>
+</resources>
