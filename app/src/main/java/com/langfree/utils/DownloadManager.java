@@ -3,6 +3,7 @@ package com.langfree.utils;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -15,6 +16,8 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 public class DownloadManager {
+    private static final String TAG = "DownloadManager";
+
     public interface DownloadProgressListener {
         void onProgress(int percent);
         void onStatusUpdate(String status);
@@ -44,6 +47,7 @@ public class DownloadManager {
      * Télécharge un fichier depuis une URL
      */
     public void downloadFile(String urlString, File outputFile) {
+        Log.d(TAG, "downloadFile called: " + urlString);
         new Thread(() -> {
             HttpURLConnection connection = null;
             InputStream input = null;
@@ -54,12 +58,14 @@ public class DownloadManager {
                 connection = (HttpURLConnection) url.openConnection();
                 connection.connect();
 
+                Log.d(TAG, "Response code: " + connection.getResponseCode());
                 if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
                     notifyError("Server returned HTTP " + connection.getResponseCode());
                     return;
                 }
 
                 int fileLength = connection.getContentLength();
+                Log.d(TAG, "File length: " + fileLength);
                 input = connection.getInputStream();
                 output = new FileOutputStream(outputFile);
 
@@ -87,9 +93,11 @@ public class DownloadManager {
                 }
 
                 output.flush();
+                Log.d(TAG, "Download completed successfully");
                 notifySuccess();
 
             } catch (Exception e) {
+                Log.e(TAG, "Download failed", e);
                 notifyError("Download failed: " + e.getMessage());
             } finally {
                 try {
@@ -107,6 +115,7 @@ public class DownloadManager {
      * Télécharge et extrait un fichier ZIP
      */
     public void downloadAndExtractZip(String urlString, File outputDir) {
+        Log.d(TAG, "downloadAndExtractZip called: " + urlString + " to " + outputDir.getAbsolutePath());
         new Thread(() -> {
             File tempFile = new File(outputDir.getParent(), "temp_download.zip");
 
@@ -126,9 +135,11 @@ public class DownloadManager {
                     tempFile.delete();
                 }
 
+                Log.d(TAG, "Download and extract completed successfully");
                 notifySuccess();
 
             } catch (Exception e) {
+                Log.e(TAG, "Download and extract failed", e);
                 notifyError("Extraction failed: " + e.getMessage());
                 if (tempFile.exists()) {
                     tempFile.delete();
@@ -207,14 +218,25 @@ public class DownloadManager {
         byte[] buffer = new byte[4096];
         int totalEntries = 0;
         int extractedEntries = 0;
+        String rootDir = null;
 
-        // Compter le nombre total d'entrées
+        // Compter le nombre total d'entrées et trouver le répertoire racine
         ZipInputStream countInput = new ZipInputStream(new java.io.FileInputStream(zipFile));
-        while (countInput.getNextEntry() != null) {
+        ZipEntry countEntry;
+        while ((countEntry = countInput.getNextEntry()) != null) {
             totalEntries++;
+            // Déterminer le répertoire racine (premier niveau de répertoire)
+            if (rootDir == null && !countEntry.isDirectory()) {
+                String[] parts = countEntry.getName().split("/");
+                if (parts.length > 1) {
+                    rootDir = parts[0];
+                }
+            }
             countInput.closeEntry();
         }
         countInput.close();
+
+        Log.d(TAG, "Total entries: " + totalEntries + ", Root dir: " + rootDir);
 
         while ((entry = zipInput.getNextEntry()) != null) {
             if (isCancelled) {
@@ -222,7 +244,19 @@ public class DownloadManager {
                 throw new IOException("Extraction cancelled");
             }
 
-            File outputFile = new File(outputDir, entry.getName());
+            String entryName = entry.getName();
+            // Supprimer le répertoire racine si présent
+            if (rootDir != null && entryName.startsWith(rootDir + "/")) {
+                entryName = entryName.substring(rootDir.length() + 1);
+            }
+            
+            // Ignorer les entrées vides après suppression du root
+            if (entryName.isEmpty()) {
+                zipInput.closeEntry();
+                continue;
+            }
+
+            File outputFile = new File(outputDir, entryName);
 
             if (entry.isDirectory()) {
                 outputFile.mkdirs();
@@ -248,6 +282,7 @@ public class DownloadManager {
         }
 
         zipInput.close();
+        Log.d(TAG, "Extraction completed. Extracted " + extractedEntries + " entries to " + outputDir.getAbsolutePath());
     }
 
     private void notifyProgress(int percent) {

@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -26,6 +27,7 @@ import com.langfree.utils.PrefManager;
 import java.io.File;
 
 public class InstallationActivity extends AppCompatActivity {
+    private static final String TAG = "InstallationActivity";
     private static final int PERMISSION_REQUEST_CODE = 100;
     private static final int PICK_FILE_REQUEST_CODE = 101;
     
@@ -69,7 +71,12 @@ public class InstallationActivity extends AppCompatActivity {
         
         // Bouton installer
         installButton.setOnClickListener(v -> {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            Log.d(TAG, "Install button clicked");
+            // Sur Android 10+, pas besoin de permission pour le stockage interne
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R || Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+                startDownload();
+            } else {
+                // Android 6-9: vérifier la permission
                 if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                         != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(this,
@@ -78,8 +85,6 @@ public class InstallationActivity extends AppCompatActivity {
                 } else {
                     startDownload();
                 }
-            } else {
-                startDownload();
             }
         });
         
@@ -108,17 +113,21 @@ public class InstallationActivity extends AppCompatActivity {
     }
     
     private void startDownload() {
+        Log.d(TAG, "startDownload called");
         if (!NetworkUtils.isNetworkAvailable(this)) {
+            Log.e(TAG, "No network available");
             Toast.makeText(this, "Pas de connexion internet", Toast.LENGTH_LONG).show();
             return;
         }
-        
+
         long totalSize = modelManager.getTotalDownloadSize();
+        Log.d(TAG, "Total download size: " + totalSize);
         if (!NetworkUtils.hasEnoughSpace(this, totalSize)) {
+            Log.e(TAG, "Not enough space");
             Toast.makeText(this, "Pas assez d'espace libre", Toast.LENGTH_LONG).show();
             return;
         }
-        
+
         isDownloading = true;
         installButton.setEnabled(false);
         importButton.setEnabled(false);
@@ -126,39 +135,46 @@ public class InstallationActivity extends AppCompatActivity {
         progressText.setVisibility(View.VISIBLE);
         statusText.setVisibility(View.VISIBLE);
         statusText.setText("Vérification de l'espace...");
-        
+
         // Créer le répertoire des modèles
         File modelsDir = modelManager.getModelsDir();
         if (!modelsDir.exists()) {
             modelsDir.mkdirs();
+            Log.d(TAG, "Created models directory: " + modelsDir.getAbsolutePath());
         }
-        
+
         // Télécharger le modèle Vosk
         statusText.setText("Téléchargement du modèle de reconnaissance vocale...");
+        Log.d(TAG, "Starting Vosk model download from: " + modelManager.getVoskModelUrl());
         downloadVoskModel();
     }
     
     private void downloadVoskModel() {
+        Log.d(TAG, "downloadVoskModel called");
         currentStep = 0;
         downloadManager.setListener(new DownloadManager.DownloadProgressListener() {
             @Override
             public void onProgress(int percent) {
+                Log.d(TAG, "Vosk download progress: " + percent + "%");
                 progressBar.setProgress(percent / 2); // Vosk = 50% du total
                 progressText.setText(getString(R.string.download_progress, percent / 2));
             }
 
             @Override
             public void onStatusUpdate(String status) {
+                Log.d(TAG, "Vosk status: " + status);
                 statusText.setText(status);
             }
 
             @Override
             public void onSuccess() {
+                Log.d(TAG, "Vosk download completed successfully");
                 downloadLlmModel();
             }
 
             @Override
             public void onError(String error) {
+                Log.e(TAG, "Vosk download error: " + error);
                 runOnUiThread(() -> {
                     isDownloading = false;
                     installButton.setEnabled(true);
@@ -170,9 +186,11 @@ public class InstallationActivity extends AppCompatActivity {
             }
         });
 
+        File voskDir = modelManager.getVoskModelDir();
+        Log.d(TAG, "Downloading Vosk model to: " + voskDir.getAbsolutePath());
         downloadManager.downloadAndExtractZip(
             modelManager.getVoskModelUrl(),
-            modelManager.getVoskModelDir()
+            voskDir
         );
     }
 

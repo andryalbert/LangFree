@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingStart="@dimen/margin_normal"
+    android:paddingEnd="@dimen/margin_normal"
+    android:paddingTop="@dimen/margin_small"
+    android:paddingBottom="@dimen/margin_small">
+
+    <!-- Message de l'utilisateur -->
+    <LinearLayout
+        android:id="@+id/userMessageLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="end"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/userMessageText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="280dp"
+            android:padding="@dimen/margin_small"
+            android:background="@drawable/bg_user_message"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_normal" />
+
+        <!-- Carte de correction -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/correctionCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            android:maxWidth="280dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="@dimen/correction_card_elevation"
+            app:cardBackgroundColor="@color/correction_background"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/margin_small">
+
+                <!-- Phrase originale avec erreurs surlignées -->
+                <TextView
+                    android:id="@+id/originalText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_normal"
+                    android:textColor="@color/text_primary" />
+
+                <!-- Phrase corrigée -->
+                <TextView
+                    android:id="@+id/correctedText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:textSize="@dimen/text_size_normal"
+                    android:textColor="@color/correction_success"
+                    android:textStyle="bold" />
+
+                <!-- Explication -->
+                <TextView
+                    android:id="@+id/explanationText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:textSize="@dimen/text_size_small"
+                    android:textColor="@color/text_secondary" />
+
+                <!-- Bouton Garder -->
+                <Button
+                    android:id="@+id/keepButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:text="@string/keep"
+                    android:textSize="@dimen/text_size_small"
+                    android:minWidth="0dp"
+                    android:paddingStart="@dimen/margin_small"
+                    android:paddingEnd="@dimen/margin_small"
+                    style="@style/Widget.MaterialComponents.Button.TextButton" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <!-- Message d'Ana -->
+    <LinearLayout
+        android:id="@+id/anaMessageLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="start"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/anaMessageText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:maxWidth="280dp"
+            android:padding="@dimen/margin_small"
+            android:background="@drawable/bg_ana_message"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_size_normal" />
+
+        <ImageButton
+            android:id="@+id/speakButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="@dimen/margin_small"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_lock_silent_mode_off"
+            android:contentDescription="Écouter"
+            android:scaleType="centerInside" />
+
+    </LinearLayout>
+
+</LinearLayout>

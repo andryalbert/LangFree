@@ -62,7 +62,7 @@
     <dimen name="text_size_normal">16sp</dimen>
     <dimen name="text_size_small">14sp</dimen>
     <string name="already_have_files">J\'ai déjà les fichiers</string>
-    <string name="app_name">LangFree</string>
+    <string name="app_name">Speak &amp; Grow</string>
     <string name="cancel">Annuler</string>
     <string name="checking_space">Vérification de l\'espace…</string>
     <string name="clear_history">Effacer l\'historique</string>
