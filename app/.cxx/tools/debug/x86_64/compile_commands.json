@@ -1,0 +1,7 @@
+[
+{
+  "directory": "E:/Finatech/code/LangFree/app/.cxx/Debug/2w6w2ku2/x86_64",
+  "command": "C:\\Users\\USER\\AppData\\Local\\Android\\Sdk\\ndk\\25.1.8937393\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=x86_64-none-linux-android21 --sysroot=C:/Users/USER/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dllama_wrapper_EXPORTS -IE:/Finatech/code/LangFree/app/src/main/cpp/include -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -fno-limit-debug-info  -fPIC -std=gnu++17 -o CMakeFiles\\llama_wrapper.dir\\llama_wrapper.cpp.o -c E:\\Finatech\\code\\LangFree\\app\\src\\main\\cpp\\llama_wrapper.cpp",
+  "file": "E:\\Finatech\\code\\LangFree\\app\\src\\main\\cpp\\llama_wrapper.cpp"
+}
+]

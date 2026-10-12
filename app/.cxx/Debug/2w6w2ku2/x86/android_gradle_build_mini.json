@@ -1,0 +1,27 @@
+{
+  "buildFiles": [
+    "E:\\Finatech\\code\\LangFree\\app\\src\\main\\cpp\\CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "C:\\Users\\USER\\AppData\\Local\\Android\\Sdk\\cmake\\3.22.1\\bin\\ninja.exe",
+      "-C",
+      "E:\\Finatech\\code\\LangFree\\app\\.cxx\\Debug\\2w6w2ku2\\x86",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "C:\\Users\\USER\\AppData\\Local\\Android\\Sdk\\cmake\\3.22.1\\bin\\ninja.exe",
+    "-C",
+    "E:\\Finatech\\code\\LangFree\\app\\.cxx\\Debug\\2w6w2ku2\\x86",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "llama_wrapper::@6890427a1f51a3e7e1df": {
+      "artifactName": "llama_wrapper",
+      "abi": "x86",
+      "output": "E:\\Finatech\\code\\LangFree\\app\\build\\intermediates\\cxx\\Debug\\2w6w2ku2\\obj\\x86\\libllama_wrapper.so",
+      "runtimeFiles": []
+    }
+  }
+}

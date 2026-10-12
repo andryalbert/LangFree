@@ -1,0 +1,3 @@
+E:/Finatech/code/LangFree/app/.cxx/Debug/2w6w2ku2/x86/CMakeFiles/llama_wrapper.dir
+E:/Finatech/code/LangFree/app/.cxx/Debug/2w6w2ku2/x86/CMakeFiles/edit_cache.dir
+E:/Finatech/code/LangFree/app/.cxx/Debug/2w6w2ku2/x86/CMakeFiles/rebuild_cache.dir
