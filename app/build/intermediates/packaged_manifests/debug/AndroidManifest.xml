@@ -38,9 +38,9 @@
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:debuggable="true"
         android:extractNativeLibs="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@android:drawable/ic_menu_help"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@android:drawable/ic_menu_help"
         android:supportsRtl="true"
         android:theme="@style/Theme.LangFree"
         android:usesCleartextTraffic="false" >

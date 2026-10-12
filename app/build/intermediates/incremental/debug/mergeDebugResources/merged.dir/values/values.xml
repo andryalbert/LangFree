@@ -2071,6 +2071,7 @@
     <string name="install_tts">Installer</string>
     <string name="installing">Installation…</string>
     <string name="item_view_role_description">Tab</string>
+    <string name="jna_library_appname">JNA bindings</string>
     <string name="job_interview">Entretien d\'embauche</string>
     <string name="keep">Garder</string>
     <string name="level">Niveau</string>

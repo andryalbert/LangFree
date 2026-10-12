@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.langfree.app-mergeDebugResources-30:/values-hu/values-hu.xml",
+            "outputFile": "com.langfree.app-mergeDebugResources-31:/values-hu/values-hu.xml",
             "map": [
                 {
                     "source": "C:\\Users\\USER\\.gradle\\caches\\8.10.2\\transforms\\4692ce45ff4fd8b19e49d2997eeb3154\\transformed\\core-1.9.0\\res\\values-hu\\values-hu.xml",

@@ -43,6 +43,9 @@ dependencies {
     // Vosk for speech recognition
     implementation 'com.alphacephei:vosk-android:0.3.32'
     
+    // JNA for native library access (required by Vosk)
+    implementation 'net.java.dev.jna:jna:5.13.0@aar'
+    
     // Gson for JSON parsing
     implementation 'com.google.code.gson:gson:2.10.1'
 }

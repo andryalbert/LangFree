@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.langfree.app-mergeDebugResources-30:/values-v22/values-v22.xml",
+            "outputFile": "com.langfree.app-mergeDebugResources-31:/values-v22/values-v22.xml",
             "map": [
                 {
                     "source": "C:\\Users\\USER\\.gradle\\caches\\8.10.2\\transforms\\a7053bb0e899ebbce5d1cb253ceea333\\transformed\\appcompat-1.6.1\\res\\values-v22\\values-v22.xml",

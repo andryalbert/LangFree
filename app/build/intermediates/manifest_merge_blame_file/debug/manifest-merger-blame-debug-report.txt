@@ -59,12 +59,12 @@
 38-->[androidx.core:core:1.9.0] C:\Users\USER\.gradle\caches\8.10.2\transforms\4692ce45ff4fd8b19e49d2997eeb3154\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
 39        android:debuggable="true"
 40        android:extractNativeLibs="true"
-41        android:icon="@mipmap/ic_launcher"
-41-->E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:25:9-43
+41        android:icon="@android:drawable/ic_menu_help"
+41-->E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:25:9-54
 42        android:label="@string/app_name"
 42-->E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:26:9-41
-43        android:roundIcon="@mipmap/ic_launcher_round"
-43-->E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:27:9-54
+43        android:roundIcon="@android:drawable/ic_menu_help"
+43-->E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:27:9-59
 44        android:supportsRtl="true"
 44-->E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:28:9-35
 45        android:theme="@style/Theme.LangFree"
