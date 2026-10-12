@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:2:1-63:12
-INJECTED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:2:1-63:12
-INJECTED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:2:1-63:12
-INJECTED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:2:1-63:12
+ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:2:1-64:12
+INJECTED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:2:1-64:12
+INJECTED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:2:1-64:12
+INJECTED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:2:1-64:12
 MERGED from [androidx.databinding:viewbinding:8.2.0] C:\Users\USER\.gradle\caches\8.10.2\transforms\1b25c72586855c16a1bcc054b7bc4500\transformed\jetified-viewbinding-8.2.0\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\USER\.gradle\caches\8.10.2\transforms\39c9f7f5c466e93937871ef17639e591\transformed\material-1.11.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\USER\.gradle\caches\8.10.2\transforms\10e7b8ba55e9fab3be33b2cf1ba09043\transformed\constraintlayout-2.1.4\AndroidManifest.xml:2:1-11:12
@@ -61,32 +61,34 @@ MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\USER\.g
 	xmlns:android
 		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:2:11-69
 uses-permission#android.permission.RECORD_AUDIO
-ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:6:5-71
+ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:6:5-7:58
+	android:usesPermissionFlags
+		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:7:9-55
 	android:name
 		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:6:22-68
 uses-permission#android.permission.INTERNET
-ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:9:5-67
+ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:10:5-67
 	android:name
-		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:9:22-64
+		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:10:22-64
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:10:5-79
+ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:11:5-79
 	android:name
-		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:10:22-76
+		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:11:22-76
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:13:5-14:38
+ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:14:5-15:38
 	android:maxSdkVersion
-		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:14:9-35
+		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:15:9-35
 	android:name
-		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:13:22-77
+		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:14:22-77
 uses-feature#android.hardware.microphone
-ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:18:5-20:35
+ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:19:5-21:35
 	android:required
-		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:20:9-32
+		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:21:9-32
 	android:name
-		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:19:9-51
+		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:20:9-51
 application
-ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:22:5-61:19
-INJECTED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:22:5-61:19
+ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:23:5-62:19
+INJECTED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:23:5-62:19
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\USER\.gradle\caches\8.10.2\transforms\39c9f7f5c466e93937871ef17639e591\transformed\material-1.11.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\USER\.gradle\caches\8.10.2\transforms\39c9f7f5c466e93937871ef17639e591\transformed\material-1.11.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\USER\.gradle\caches\8.10.2\transforms\10e7b8ba55e9fab3be33b2cf1ba09043\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
@@ -108,69 +110,69 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\USER\.gradle\cache
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.9.0] C:\Users\USER\.gradle\caches\8.10.2\transforms\4692ce45ff4fd8b19e49d2997eeb3154\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:28:9-35
+		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:29:9-35
 	android:label
-		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:26:9-41
+		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:27:9-41
 	android:roundIcon
-		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:27:9-59
+		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:28:9-59
 	tools:targetApi
-		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:31:9-29
+		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:32:9-29
 	android:icon
-		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:25:9-54
+		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:26:9-54
 	android:allowBackup
-		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:24:9-35
+		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:25:9-35
 	android:theme
-		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:29:9-46
+		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:30:9-46
 	android:usesCleartextTraffic
-		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:30:9-45
+		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:31:9-45
 	android:name
-		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:23:9-36
+		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:24:9-36
 activity#com.langfree.MainActivity
-ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:33:9-42:20
+ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:34:9-43:20
 	android:screenOrientation
-		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:36:13-49
+		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:37:13-49
 	android:exported
-		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:35:13-36
+		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:36:13-36
 	android:theme
-		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:37:13-50
+		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:38:13-50
 	android:name
-		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:34:13-41
+		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:35:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:38:13-41:29
+ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:39:13-42:29
 action#android.intent.action.MAIN
-ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:39:17-69
+ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:40:17-69
 	android:name
-		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:39:25-66
+		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:40:25-66
 category#android.intent.category.LAUNCHER
-ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:40:17-77
+ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:41:17-77
 	android:name
-		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:40:27-74
+		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:41:27-74
 activity#com.langfree.InstallationActivity
-ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:44:9-48:53
+ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:45:9-49:53
 	android:screenOrientation
-		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:47:13-49
+		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:48:13-49
 	android:exported
-		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:46:13-37
+		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:47:13-37
 	android:theme
-		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:48:13-50
+		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:49:13-50
 	android:name
-		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:45:13-49
+		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:46:13-49
 activity#com.langfree.SettingsActivity
-ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:50:9-54:53
+ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:51:9-55:53
 	android:screenOrientation
-		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:53:13-49
+		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:54:13-49
 	android:exported
-		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:52:13-37
+		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:53:13-37
 	android:theme
-		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:54:13-50
+		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:55:13-50
 	android:name
-		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:51:13-45
+		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:52:13-45
 service#com.langfree.speech.AnaSpeaker
-ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:57:9-59:40
+ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:58:9-60:40
 	android:exported
-		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:59:13-37
+		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:60:13-37
 	android:name
-		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:58:13-46
+		ADDED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml:59:13-46
 uses-sdk
 INJECTED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from E:\Finatech\code\LangFree\app\src\main\AndroidManifest.xml

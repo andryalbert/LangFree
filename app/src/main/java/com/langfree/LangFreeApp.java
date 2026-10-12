@@ -17,13 +17,17 @@ public class LangFreeApp extends Application {
         super.onCreate();
         instance = this;
         
-        // Initialiser les singletons
-        PrefManager.getInstance(this);
-        GrammarEngine.getInstance(this);
-        VoskRecognizer.getInstance(this);
-        AnaSpeaker.getInstance(this);
-        ModelManager.getInstance(this);
-        DatabaseHelper.getInstance(this);
+        try {
+            // Initialiser les singletons
+            PrefManager.getInstance(this);
+            GrammarEngine.getInstance(this);
+            VoskRecognizer.getInstance(this);
+            AnaSpeaker.getInstance(this);
+            ModelManager.getInstance(this);
+            DatabaseHelper.getInstance(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
     public static LangFreeApp getInstance() {

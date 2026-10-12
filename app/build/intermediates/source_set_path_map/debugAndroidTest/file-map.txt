@@ -1,4 +1,0 @@
-com.langfree.test.app-androidTest-0 E:\Finatech\code\LangFree\app\build\generated\res\resValues\androidTest\debug
-com.langfree.test.app-mergeDebugAndroidTestResources-1 E:\Finatech\code\LangFree\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
-com.langfree.test.app-mergeDebugAndroidTestResources-2 E:\Finatech\code\LangFree\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
-com.langfree.test.app-merged_res-3 E:\Finatech\code\LangFree\app\build\intermediates\merged_res\debugAndroidTest

@@ -19,7 +19,6 @@ import com.langfree.database.DatabaseHelper;
 import com.langfree.database.VocabularyDao;
 import com.langfree.model.VocabularyItem;
 import com.langfree.speech.AnaSpeaker;
-import com.langfree.ui.VocabularyAdapter;
 import com.langfree.utils.AudioUtils;
 import com.langfree.utils.PrefManager;
 

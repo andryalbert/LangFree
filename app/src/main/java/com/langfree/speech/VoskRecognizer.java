@@ -1,17 +1,21 @@
 package com.langfree.speech;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
+import android.os.Build;
 
 import org.vosk.LibVosk;
 import org.vosk.LogLevel;
 import org.vosk.Model;
 import org.vosk.Recognizer;
 
+import androidx.core.content.ContextCompat;
+
 import java.io.File;
-import java.io.IOException;
 
 public class VoskRecognizer {
     private static VoskRecognizer instance;
@@ -19,28 +23,28 @@ public class VoskRecognizer {
     private Recognizer recognizer;
     private AudioRecord audioRecord;
     private Context context;
-    
+
     private boolean isListening = false;
     private RecognitionListener listener;
-    
+
     public interface RecognitionListener {
         void onPartialResult(String text);
         void onFinalResult(String text);
         void onError(String error);
     }
-    
+
     private VoskRecognizer(Context context) {
         this.context = context.getApplicationContext();
         LibVosk.setLogLevel(LogLevel.INFO);
     }
-    
+
     public static synchronized VoskRecognizer getInstance(Context context) {
         if (instance == null) {
             instance = new VoskRecognizer(context);
         }
         return instance;
     }
-    
+
     /**
      * Charge le modèle Vosk depuis le stockage interne
      */
@@ -57,7 +61,7 @@ public class VoskRecognizer {
             return false;
         }
     }
-    
+
     /**
      * Démarre la reconnaissance vocale
      */
@@ -68,20 +72,31 @@ public class VoskRecognizer {
             }
             return false;
         }
-        
+
         this.listener = listener;
-        
+
+        // Vérifier la permission RECORD_AUDIO
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(context, Manifest.permission.RECORD_AUDIO)
+                    != PackageManager.PERMISSION_GRANTED) {
+                if (this.listener != null) {
+                    this.listener.onError("Microphone permission not granted");
+                }
+                return false;
+            }
+        }
+
         try {
             // Créer le recognizer avec le modèle
             recognizer = new Recognizer(model, 16000.0f);
-            
+
             // Configuration de l'audio
             int sampleRate = 16000;
             int audioFormat = AudioFormat.ENCODING_PCM_16BIT;
             int channelConfig = AudioFormat.CHANNEL_IN_MONO;
-            
+
             int bufferSize = AudioRecord.getMinBufferSize(sampleRate, channelConfig, audioFormat) * 2;
-            
+
             audioRecord = new AudioRecord(
                 MediaRecorder.AudioSource.MIC,
                 sampleRate,

@@ -19,6 +19,7 @@ import androidx.core.content.ContextCompat;
 
 import com.langfree.ai.ModelManager;
 import com.langfree.utils.AudioUtils;
+import com.langfree.utils.DownloadManager;
 import com.langfree.utils.NetworkUtils;
 import com.langfree.utils.PrefManager;
 
@@ -30,6 +31,7 @@ public class InstallationActivity extends AppCompatActivity {
     
     private ModelManager modelManager;
     private PrefManager prefManager;
+    private DownloadManager downloadManager;
     private ProgressBar progressBar;
     private TextView progressText;
     private TextView statusText;
@@ -37,8 +39,9 @@ public class InstallationActivity extends AppCompatActivity {
     private Button installButton;
     private Button importButton;
     private Button continueButton;
-    
+
     private boolean isDownloading = false;
+    private int currentStep = 0; // 0: Vosk, 1: LLM
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,7 @@ public class InstallationActivity extends AppCompatActivity {
         
         modelManager = ModelManager.getInstance(this);
         prefManager = PrefManager.getInstance(this);
+        downloadManager = new DownloadManager(this);
         
         // Initialiser les vues
         progressBar = findViewById(R.id.progressBar);
@@ -129,42 +133,92 @@ public class InstallationActivity extends AppCompatActivity {
             modelsDir.mkdirs();
         }
         
-        // Télécharger le modèle Vosk (simplifié - dans une vraie implémentation, il faudrait gérer les ZIP)
+        // Télécharger le modèle Vosk
         statusText.setText("Téléchargement du modèle de reconnaissance vocale...");
-        
-        // Pour l'instant, on simule le téléchargement
-        simulateDownload();
+        downloadVoskModel();
     }
     
-    private void simulateDownload() {
-        // Simulation du téléchargement
-        new Thread(() -> {
-            for (int i = 0; i <= 100; i += 5) {
-                try {
-                    Thread.sleep(200);
-                    final int progress = i;
-                    runOnUiThread(() -> {
-                        progressBar.setProgress(progress);
-                        progressText.setText(getString(R.string.download_progress, progress));
-                    });
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+    private void downloadVoskModel() {
+        currentStep = 0;
+        downloadManager.setListener(new DownloadManager.DownloadProgressListener() {
+            @Override
+            public void onProgress(int percent) {
+                progressBar.setProgress(percent / 2); // Vosk = 50% du total
+                progressText.setText(getString(R.string.download_progress, percent / 2));
             }
-            
-            runOnUiThread(() -> {
-                statusText.setText("Installation...");
-                // Simuler l'installation
-                new Thread(() -> {
-                    try {
-                        Thread.sleep(1000);
-                        runOnUiThread(() -> showInstallationComplete());
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }).start();
-            });
-        }).start();
+
+            @Override
+            public void onStatusUpdate(String status) {
+                statusText.setText(status);
+            }
+
+            @Override
+            public void onSuccess() {
+                downloadLlmModel();
+            }
+
+            @Override
+            public void onError(String error) {
+                runOnUiThread(() -> {
+                    isDownloading = false;
+                    installButton.setEnabled(true);
+                    importButton.setEnabled(true);
+                    progressBar.setVisibility(View.GONE);
+                    progressText.setVisibility(View.GONE);
+                    Toast.makeText(InstallationActivity.this, error, Toast.LENGTH_LONG).show();
+                });
+            }
+        });
+
+        downloadManager.downloadAndExtractZip(
+            modelManager.getVoskModelUrl(),
+            modelManager.getVoskModelDir()
+        );
+    }
+
+    private void downloadLlmModel() {
+        currentStep = 1;
+        statusText.setText("Téléchargement du modèle IA...");
+
+        downloadManager.setListener(new DownloadManager.DownloadProgressListener() {
+            @Override
+            public void onProgress(int percent) {
+                progressBar.setProgress(50 + percent / 2); // LLM = 50% du total (de 50% à 100%)
+                progressText.setText(getString(R.string.download_progress, 50 + percent / 2));
+            }
+
+            @Override
+            public void onStatusUpdate(String status) {
+                statusText.setText(status);
+            }
+
+            @Override
+            public void onSuccess() {
+                runOnUiThread(() -> showInstallationComplete());
+            }
+
+            @Override
+            public void onError(String error) {
+                runOnUiThread(() -> {
+                    isDownloading = false;
+                    installButton.setEnabled(true);
+                    importButton.setEnabled(true);
+                    progressBar.setVisibility(View.GONE);
+                    progressText.setVisibility(View.GONE);
+                    Toast.makeText(InstallationActivity.this, error, Toast.LENGTH_LONG).show();
+                });
+            }
+        });
+
+        File llmDir = modelManager.getLlmModelFile().getParentFile();
+        if (!llmDir.exists()) {
+            llmDir.mkdirs();
+        }
+
+        downloadManager.downloadFile(
+            modelManager.getLlmModelUrl(),
+            modelManager.getLlmModelFile()
+        );
     }
     
     private void showInstallationComplete() {

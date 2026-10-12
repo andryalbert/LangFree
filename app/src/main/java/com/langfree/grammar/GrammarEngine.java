@@ -38,11 +38,13 @@ public class GrammarEngine {
             byte[] buffer = new byte[size];
             is.read(buffer);
             is.close();
-            
+
             String json = new String(buffer, "UTF-8");
             Gson gson = new Gson();
             Type listType = new TypeToken<List<GrammarRule>>(){}.getType();
-            rules = gson.fromJson(json, listType);
+            // Parse the JSON object and extract the "rules" array
+            com.google.gson.JsonObject jsonObject = gson.fromJson(json, com.google.gson.JsonObject.class);
+            rules = gson.fromJson(jsonObject.get("rules"), listType);
         } catch (IOException e) {
             e.printStackTrace();
             rules = new ArrayList<>();

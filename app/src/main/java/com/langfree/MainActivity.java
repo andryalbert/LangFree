@@ -81,33 +81,38 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        // Vérifier si c'est le premier lancement
-        prefManager = PrefManager.getInstance(this);
-        if (prefManager.isFirstLaunch()) {
-            prefManager.setFirstLaunch(false);
-            // Rediriger vers l'installation
-            Intent intent = new Intent(this, InstallationActivity.class);
-            startActivity(intent);
-            finish();
-            return;
+        try {
+            // Vérifier si c'est le premier lancement
+            prefManager = PrefManager.getInstance(this);
+            if (prefManager.isFirstLaunch()) {
+                prefManager.setFirstLaunch(false);
+                // Rediriger vers l'installation
+                Intent intent = new Intent(this, InstallationActivity.class);
+                startActivity(intent);
+                finish();
+                return;
+            }
+            
+            // Vérifier si les modèles sont installés
+            if (!prefManager.areModelsInstalled()) {
+                Intent intent = new Intent(this, InstallationActivity.class);
+                startActivity(intent);
+                finish();
+                return;
+            }
+            
+            setContentView(R.layout.activity_main);
+            
+            // Initialiser les composants
+            initViews();
+            initComponents();
+            setupListeners();
+            loadMessages();
+            loadModels();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Erreur de démarrage: " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
-        
-        // Vérifier si les modèles sont installés
-        if (!prefManager.areModelsInstalled()) {
-            Intent intent = new Intent(this, InstallationActivity.class);
-            startActivity(intent);
-            finish();
-            return;
-        }
-        
-        setContentView(R.layout.activity_main);
-        
-        // Initialiser les composants
-        initViews();
-        initComponents();
-        setupListeners();
-        loadMessages();
-        loadModels();
     }
     
     private void initViews() {
@@ -207,8 +212,7 @@ public class MainActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {}
         });
         
-        // Listener AnaSpeaker
-        anaSpeaker = new AnaSpeaker(this);
+        // Configurer AnaSpeaker
         anaSpeaker.setSpeechRate(prefManager.getVoiceSpeed());
     }
     
@@ -230,18 +234,23 @@ public class MainActivity extends AppCompatActivity {
     }
     
     private void loadModels() {
-        // Charger le modèle Vosk
-        String voskPath = modelManager.getVoskModelDir().getAbsolutePath();
-        boolean loaded = voskRecognizer.loadModel(voskPath);
-        
-        if (!loaded) {
-            Toast.makeText(this, "Erreur de chargement du modèle Vosk", Toast.LENGTH_LONG).show();
-        }
-        
-        // Charger le modèle LLM
-        boolean llmLoaded = modelManager.loadLlmModel();
-        if (!llmLoaded) {
-            Toast.makeText(this, "Erreur de chargement du modèle IA", Toast.LENGTH_LONG).show();
+        try {
+            // Charger le modèle Vosk
+            String voskPath = modelManager.getVoskModelDir().getAbsolutePath();
+            boolean loaded = voskRecognizer.loadModel(voskPath);
+            
+            if (!loaded) {
+                Toast.makeText(this, "Erreur de chargement du modèle Vosk", Toast.LENGTH_LONG).show();
+            }
+            
+            // Charger le modèle LLM
+            boolean llmLoaded = modelManager.loadLlmModel();
+            if (!llmLoaded) {
+                Toast.makeText(this, "Erreur de chargement du modèle IA", Toast.LENGTH_LONG).show();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Erreur lors du chargement des modèles", Toast.LENGTH_LONG).show();
         }
     }
     

@@ -2,8 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Permission pour le micro -->
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!-- Permission pour le micro (reconnaissance vocale) -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO"
+        android:usesPermissionFlags="neverForLocation" />
     
     <!-- Permission pour internet (téléchargement initial des modèles uniquement) -->
     <uses-permission android:name="android.permission.INTERNET" />
