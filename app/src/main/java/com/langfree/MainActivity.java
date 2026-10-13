@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     // Vues
     private RecyclerView messageRecyclerView;
     private EditText messageInput;
-    private Button sendButton;
+    private ImageButton sendButton;
     private ImageButton micButton;
     private ImageButton settingsButton;
     private Spinner themeSpinner;
@@ -227,10 +227,23 @@ public class MainActivity extends AppCompatActivity {
     }
     
     private void showWelcomeMessage() {
+        // Vérifier si le message de bienvenue existe déjà dans la base de données
+        List<Message> allMessages = dbHelper.getAllMessages();
+        for (Message msg : allMessages) {
+            if (msg.getType() == Message.TYPE_ANA && 
+                msg.getText().equals(getString(R.string.welcome_message))) {
+                // Le message existe déjà, ne pas l'ajouter
+                return;
+            }
+        }
+        
         Message welcome = new Message(Message.TYPE_ANA, getString(R.string.welcome_message));
         messages.add(welcome);
         messageAdapter.addMessage(welcome);
         dbHelper.addMessage(welcome);
+        
+        // Faire lire le message de bienvenue par Ana
+        speakAnaResponse(welcome.getText());
     }
     
     private void loadModels() {
@@ -410,10 +423,8 @@ public class MainActivity extends AppCompatActivity {
                 messageAdapter.addMessage(anaMessage);
                 dbHelper.addMessage(anaMessage);
                 
-                // Lire la réponse à voix haute
-                if (prefManager.shouldReadCorrection()) {
-                    speakAnaResponse(response);
-                }
+                // Lire la réponse à voix haute (toujours activé pour la conversation)
+                speakAnaResponse(response);
             });
         }).start();
     }

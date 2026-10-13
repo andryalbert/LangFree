@@ -4,7 +4,6 @@ package com.langfree.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -41,7 +40,7 @@ public final class ActivityMainBinding implements ViewBinding {
   public final ImageButton micButton;
 
   @NonNull
-  public final Button sendButton;
+  public final ImageButton sendButton;
 
   @NonNull
   public final ImageButton settingsButton;
@@ -58,7 +57,7 @@ public final class ActivityMainBinding implements ViewBinding {
   private ActivityMainBinding(@NonNull ConstraintLayout rootView, @NonNull View audioLevelIndicator,
       @NonNull LinearLayout inputLayout, @NonNull EditText messageInput,
       @NonNull RecyclerView messageRecyclerView, @NonNull ImageButton micButton,
-      @NonNull Button sendButton, @NonNull ImageButton settingsButton,
+      @NonNull ImageButton sendButton, @NonNull ImageButton settingsButton,
       @NonNull TextView silenceCountdown, @NonNull TextView statusText,
       @NonNull Spinner themeSpinner) {
     this.rootView = rootView;
@@ -132,7 +131,7 @@ public final class ActivityMainBinding implements ViewBinding {
       }
 
       id = R.id.sendButton;
-      Button sendButton = ViewBindings.findChildViewById(rootView, id);
+      ImageButton sendButton = ViewBindings.findChildViewById(rootView, id);
       if (sendButton == null) {
         break missingId;
       }

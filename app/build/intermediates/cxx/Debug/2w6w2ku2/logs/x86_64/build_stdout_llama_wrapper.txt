@@ -1,3 +1,2 @@
 ninja: Entering directory `E:\Finatech\code\LangFree\app\.cxx\Debug\2w6w2ku2\x86_64'
-[1/2] Building CXX object CMakeFiles/llama_wrapper.dir/llama_wrapper.cpp.o
-[2/2] Linking CXX shared library E:\Finatech\code\LangFree\app\build\intermediates\cxx\Debug\2w6w2ku2\obj\x86_64\libllama_wrapper.so
+ninja: no work to do.

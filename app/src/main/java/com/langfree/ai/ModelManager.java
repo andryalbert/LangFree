@@ -146,7 +146,7 @@ public class ModelManager {
         fullPrompt += "User: " + userMessage + "\nAssistant:";
         
         // Générer la réponse
-        return llamaEngine.generateResponse(fullPrompt, 40, 0.6f);
+        return llamaEngine.generateResponse(fullPrompt, 100, 0.7f);
     }
     
     /**
@@ -156,7 +156,7 @@ public class ModelManager {
         String level = prefManager.getLevel();
         String theme = prefManager.getTheme();
         
-        String basePrompt = "You are Ana, a friendly English partner. ";
+        String basePrompt = "You are Ana, a friendly English conversation partner and tutor. ALWAYS respond in English. Never respond in any other language. ";
         
         // Ajuster selon le niveau
         switch (level) {
@@ -196,7 +196,7 @@ public class ModelManager {
                 break;
         }
         
-        basePrompt += "Reply in 1 or 2 very short, simple sentences. End with a short question to keep the conversation going.";
+        basePrompt += "IMPORTANT: When the user speaks, first correct any grammar mistakes in their sentence. Then suggest a better or more natural way to say it in English. After the correction, respond conversationally to what they said. Keep your response varied and natural - don't use the same phrases repeatedly. Ask different questions to keep the conversation interesting. Be helpful and encouraging.";
         
         return basePrompt;
     }

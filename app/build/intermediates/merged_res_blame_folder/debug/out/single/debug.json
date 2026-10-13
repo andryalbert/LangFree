@@ -1,82 +1,90 @@
 [
     {
-        "merged": "com.langfree.app-merged_res-33:/mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "com.langfree.app-main-35:/mipmap-xxxhdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.10.2\\com.langfree.app-merged_res-33:\\mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\USER\\.gradle\\daemon\\8.10.2\\com.langfree.app-main-35:\\mipmap-xhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.langfree.app-merged_res-33:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "com.langfree.app-main-35:/mipmap-anydpi-v26/ic_launcher.xml"
+        "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.10.2\\com.langfree.app-merged_res-33:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\USER\\.gradle\\daemon\\8.10.2\\com.langfree.app-main-35:\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
     {
-        "merged": "com.langfree.app-merged_res-33:/mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "com.langfree.app-main-35:/mipmap-mdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.10.2\\com.langfree.app-merged_res-33:\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\USER\\.gradle\\daemon\\8.10.2\\com.langfree.app-main-35:\\mipmap-hdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.langfree.app-merged_res-33:/drawable_ic_launcher_foreground.xml.flat",
-        "source": "com.langfree.app-main-35:/drawable/ic_launcher_foreground.xml"
+        "merged": "com.langfree.app-merged_res-33:/drawable_circle_background.xml.flat",
+        "source": "com.langfree.app-main-35:/drawable/circle_background.xml"
     },
     {
-        "merged": "com.langfree.app-merged_res-33:/drawable_profile_badge.xml.flat",
-        "source": "com.langfree.app-main-35:/drawable/profile_badge.xml"
+        "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.10.2\\com.langfree.app-merged_res-33:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\USER\\.gradle\\daemon\\8.10.2\\com.langfree.app-main-35:\\mipmap-xxxhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.langfree.app-merged_res-33:/layout_item_message.xml.flat",
-        "source": "com.langfree.app-main-35:/layout/item_message.xml"
+        "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.10.2\\com.langfree.app-merged_res-33:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\USER\\.gradle\\daemon\\8.10.2\\com.langfree.app-main-35:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.langfree.app-merged_res-33:/drawable_bg_ana_message.xml.flat",
-        "source": "com.langfree.app-main-35:/drawable/bg_ana_message.xml"
+        "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.10.2\\com.langfree.app-merged_res-33:\\layout_activity_installation.xml.flat",
+        "source": "C:\\Users\\USER\\.gradle\\daemon\\8.10.2\\com.langfree.app-main-35:\\layout\\activity_installation.xml"
     },
     {
-        "merged": "com.langfree.app-merged_res-33:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "com.langfree.app-main-35:/mipmap-xxxhdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.10.2\\com.langfree.app-merged_res-33:\\drawable_profile_badge.xml.flat",
+        "source": "C:\\Users\\USER\\.gradle\\daemon\\8.10.2\\com.langfree.app-main-35:\\drawable\\profile_badge.xml"
+    },
+    {
+        "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.10.2\\com.langfree.app-merged_res-33:\\layout_item_message.xml.flat",
+        "source": "C:\\Users\\USER\\.gradle\\daemon\\8.10.2\\com.langfree.app-main-35:\\layout\\item_message.xml"
+    },
+    {
+        "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.10.2\\com.langfree.app-merged_res-33:\\drawable_bg_ana_message.xml.flat",
+        "source": "C:\\Users\\USER\\.gradle\\daemon\\8.10.2\\com.langfree.app-main-35:\\drawable\\bg_ana_message.xml"
+    },
+    {
+        "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.10.2\\com.langfree.app-merged_res-33:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\USER\\.gradle\\daemon\\8.10.2\\com.langfree.app-main-35:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
     {
         "merged": "com.langfree.app-merged_res-33:/layout_activity_main.xml.flat",
         "source": "com.langfree.app-main-35:/layout/activity_main.xml"
     },
     {
-        "merged": "com.langfree.app-merged_res-33:/mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "com.langfree.app-main-35:/mipmap-xxhdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.10.2\\com.langfree.app-merged_res-33:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\USER\\.gradle\\daemon\\8.10.2\\com.langfree.app-main-35:\\layout\\activity_main.xml"
     },
     {
-        "merged": "com.langfree.app-merged_res-33:/drawable_bg_user_message.xml.flat",
-        "source": "com.langfree.app-main-35:/drawable/bg_user_message.xml"
+        "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.10.2\\com.langfree.app-merged_res-33:\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\USER\\.gradle\\daemon\\8.10.2\\com.langfree.app-main-35:\\mipmap-mdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.langfree.app-merged_res-33:/mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "com.langfree.app-main-35:/mipmap-xhdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.10.2\\com.langfree.app-merged_res-33:\\drawable_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\USER\\.gradle\\daemon\\8.10.2\\com.langfree.app-main-35:\\drawable\\ic_launcher_foreground.xml"
     },
     {
-        "merged": "com.langfree.app-merged_res-33:/mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "com.langfree.app-main-35:/mipmap-hdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.10.2\\com.langfree.app-merged_res-33:\\layout_activity_settings.xml.flat",
+        "source": "C:\\Users\\USER\\.gradle\\daemon\\8.10.2\\com.langfree.app-main-35:\\layout\\activity_settings.xml"
     },
     {
-        "merged": "com.langfree.app-merged_res-33:/mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "com.langfree.app-main-35:/mipmap-xhdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.10.2\\com.langfree.app-merged_res-33:\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\USER\\.gradle\\daemon\\8.10.2\\com.langfree.app-main-35:\\mipmap-hdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.langfree.app-merged_res-33:/layout_activity_settings.xml.flat",
-        "source": "com.langfree.app-main-35:/layout/activity_settings.xml"
+        "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.10.2\\com.langfree.app-merged_res-33:\\drawable_bg_user_message.xml.flat",
+        "source": "C:\\Users\\USER\\.gradle\\daemon\\8.10.2\\com.langfree.app-main-35:\\drawable\\bg_user_message.xml"
     },
     {
-        "merged": "com.langfree.app-merged_res-33:/mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "com.langfree.app-main-35:/mipmap-mdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.10.2\\com.langfree.app-merged_res-33:\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\USER\\.gradle\\daemon\\8.10.2\\com.langfree.app-main-35:\\mipmap-xxhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.langfree.app-merged_res-33:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "com.langfree.app-main-35:/mipmap-anydpi-v26/ic_launcher_round.xml"
+        "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.10.2\\com.langfree.app-merged_res-33:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\USER\\.gradle\\daemon\\8.10.2\\com.langfree.app-main-35:\\mipmap-xhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.langfree.app-merged_res-33:/mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "com.langfree.app-main-35:/mipmap-hdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.10.2\\com.langfree.app-merged_res-33:\\mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\USER\\.gradle\\daemon\\8.10.2\\com.langfree.app-main-35:\\mipmap-mdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.langfree.app-merged_res-33:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "com.langfree.app-main-35:/mipmap-xxhdpi/ic_launcher_round.webp"
-    },
-    {
-        "merged": "com.langfree.app-merged_res-33:/layout_activity_installation.xml.flat",
-        "source": "com.langfree.app-main-35:/layout/activity_installation.xml"
+        "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.10.2\\com.langfree.app-merged_res-33:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\USER\\.gradle\\daemon\\8.10.2\\com.langfree.app-main-35:\\mipmap-xxhdpi\\ic_launcher_round.webp"
     }
 ]

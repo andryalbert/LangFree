@@ -3,7 +3,7 @@
     <string name="app_name">Speak &amp; Grow</string>
     
     <!-- Écran principal -->
-    <string name="welcome_message">Bonjour ! Je suis Ana. Parlez-moi en anglais pour pratiquer.</string>
+    <string name="welcome_message">Hello! I\'m Ana. Let\'s practice English together. How are you today?</string>
     <string name="listening">Je vous écoute…</string>
     <string name="thinking">Ana réfléchit…</string>
     <string name="speaking">Ana parle…</string>
