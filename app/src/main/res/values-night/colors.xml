@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="md_primary">#8ED0BE</color>
+    <color name="md_on_primary">#00382E</color>
+    <color name="md_primary_container">#1C3F36</color>
+    <color name="md_secondary">#FFB68A</color>
+    <color name="md_on_secondary">#4E2600</color>
+    <color name="md_background">#101614</color>
+    <color name="md_surface">#1C2622</color>
+    <color name="md_on_surface">#E4EEEA</color>
+    <color name="md_on_surface_variant">#B7C6C0</color>
+    <color name="bubble_user">#1F6B5A</color>
+    <color name="bubble_user_text">#FFFFFF</color>
+    <color name="section_correction">#3A2A1C</color>
+    <color name="section_explanation">#1C2838</color>
+    <color name="section_reply">#163028</color>
+    <color name="highlight_error">#8A5A2A</color>
+    <color name="success">#8ED6B0</color>
+    <color name="error">#F2B8B5</color>
+    <color name="ic_launcher_background">#1F6B5A</color>
+</resources>

@@ -1,153 +1,169 @@
 package com.langfree.ui;
 
-import android.graphics.Color;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.langfree.R;
-import com.langfree.model.Message;
-import com.langfree.speech.AnaSpeaker;
+import com.langfree.databinding.ItemMessageAssistantBinding;
+import com.langfree.databinding.ItemMessageStreamingBinding;
+import com.langfree.databinding.ItemMessageUserBinding;
+import com.langfree.model.ChatMessage;
+import com.langfree.model.TutorResponse;
+import com.langfree.utils.TextDiff;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Bulles utilisateur, bulles tuteur en trois sections, et bulle de streaming.
+ */
 public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private List<Message> messages = new ArrayList<>();
-    private OnKeepListener onKeepListener;
-    private AnaSpeaker anaSpeaker;
-    
-    public interface OnKeepListener {
-        void onKeep(Message message);
+    public interface ListenListener {
+        void onListen(String englishText);
     }
-    
-    public MessageAdapter(OnKeepListener onKeepListener) {
-        this.onKeepListener = onKeepListener;
+
+    private static final int TYPE_USER = 1;
+    private static final int TYPE_ASSISTANT = 2;
+    private static final int TYPE_STREAM = 3;
+
+    private final List<ChatMessage> messages = new ArrayList<>();
+    private final ListenListener listenListener;
+    private String streaming;
+    private int textSizeSp = 16;
+
+    public MessageAdapter(ListenListener listenListener) {
+        this.listenListener = listenListener;
     }
-    
-    public void setMessages(List<Message> messages) {
-        this.messages = messages;
-        notifyDataSetChanged();
-    }
-    
-    public void addMessage(Message message) {
-        messages.add(message);
-        notifyItemInserted(messages.size() - 1);
-    }
-    
-    public void clear() {
+
+    public void setMessages(List<ChatMessage> items) {
         messages.clear();
+        if (items != null) {
+            messages.addAll(items);
+        }
         notifyDataSetChanged();
     }
-    
+
+    public void setStreaming(String text) {
+        streaming = (text == null || text.isEmpty()) ? null : text;
+        notifyDataSetChanged();
+    }
+
+    public void setTextSizeSp(int size) {
+        textSizeSp = size;
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public int getItemCount() {
+        return messages.size() + (streaming == null ? 0 : 1);
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (streaming != null && position == messages.size()) {
+            return TYPE_STREAM;
+        }
+        return messages.get(position).isUser() ? TYPE_USER : TYPE_ASSISTANT;
+    }
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_message, parent, false);
-        return new MessageViewHolder(view);
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        if (viewType == TYPE_USER) {
+            return new UserHolder(ItemMessageUserBinding.inflate(inflater, parent, false));
+        }
+        if (viewType == TYPE_STREAM) {
+            return new StreamHolder(ItemMessageStreamingBinding.inflate(inflater, parent, false));
+        }
+        return new AssistantHolder(ItemMessageAssistantBinding.inflate(inflater, parent, false));
     }
-    
+
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        MessageViewHolder vh = (MessageViewHolder) holder;
-        Message message = messages.get(position);
-        
-        if (message.isUserMessage()) {
-            // Message utilisateur
-            vh.userMessageLayout.setVisibility(View.VISIBLE);
-            vh.anaMessageLayout.setVisibility(View.GONE);
-            
-            vh.userMessageText.setText(message.getText());
-            
-            // Afficher la correction si présente
-            if (message.getCorrection() != null && message.getCorrection().hasErrors()) {
-                vh.correctionCard.setVisibility(View.VISIBLE);
-                
-                // Texte original (simplifié - on pourrait surligner les erreurs)
-                vh.originalText.setText(message.getText());
-                
-                // Texte corrigé
-                vh.correctedText.setText(message.getCorrection().getCorrectedText());
-                
-                // Explication
-                vh.explanationText.setText(message.getCorrection().getExplanation());
-                
-                // Bouton garder
-                vh.keepButton.setOnClickListener(v -> {
-                    if (onKeepListener != null) {
-                        onKeepListener.onKeep(message);
-                    }
-                });
-            } else if (message.getCorrection() != null) {
-                // Pas d'erreurs
-                vh.correctionCard.setVisibility(View.VISIBLE);
-                vh.originalText.setText(message.getText());
-                vh.correctedText.setText("✓ " + message.getCorrection().getExplanation());
-                vh.explanationText.setText("");
-                vh.keepButton.setVisibility(View.GONE);
-            } else {
-                vh.correctionCard.setVisibility(View.GONE);
+        if (holder instanceof UserHolder) {
+            ((UserHolder) holder).bind(messages.get(position), textSizeSp);
+        } else if (holder instanceof StreamHolder) {
+            ((StreamHolder) holder).bind(streaming, textSizeSp);
+        } else if (holder instanceof AssistantHolder) {
+            String previousUser = null;
+            if (position > 0 && messages.get(position - 1).isUser()) {
+                previousUser = messages.get(position - 1).rawText;
             }
-            
-        } else {
-            // Message d'Ana
-            vh.userMessageLayout.setVisibility(View.GONE);
-            vh.anaMessageLayout.setVisibility(View.VISIBLE);
-            
-            vh.anaMessageText.setText(message.getText());
-            
-            // Bouton pour écouter
-            vh.speakButton.setOnClickListener(v -> {
-                if (anaSpeaker == null) {
-                    anaSpeaker = AnaSpeaker.getInstance(v.getContext());
-                }
-                anaSpeaker.speakSimple(message.getText());
-            });
+            ((AssistantHolder) holder).bind(messages.get(position), previousUser, textSizeSp, listenListener);
         }
     }
-    
-    @Override
-    public int getItemCount() {
-        return messages.size();
+
+    static final class UserHolder extends RecyclerView.ViewHolder {
+        private final ItemMessageUserBinding binding;
+
+        UserHolder(ItemMessageUserBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
+        }
+
+        void bind(ChatMessage message, int textSizeSp) {
+            binding.messageText.setText(message.rawText);
+            binding.messageText.setTextSize(textSizeSp);
+        }
     }
-    
-    static class MessageViewHolder extends RecyclerView.ViewHolder {
-        LinearLayout userMessageLayout;
-        LinearLayout anaMessageLayout;
-        TextView userMessageText;
-        TextView anaMessageText;
-        CardView correctionCard;
-        TextView originalText;
-        TextView correctedText;
-        TextView explanationText;
-        Button keepButton;
-        ImageButton speakButton;
-        
-        public MessageViewHolder(View itemView) {
-            super(itemView);
-            
-            userMessageLayout = itemView.findViewById(R.id.userMessageLayout);
-            anaMessageLayout = itemView.findViewById(R.id.anaMessageLayout);
-            userMessageText = itemView.findViewById(R.id.userMessageText);
-            anaMessageText = itemView.findViewById(R.id.anaMessageText);
-            correctionCard = itemView.findViewById(R.id.correctionCard);
-            originalText = itemView.findViewById(R.id.originalText);
-            correctedText = itemView.findViewById(R.id.correctedText);
-            explanationText = itemView.findViewById(R.id.explanationText);
-            keepButton = itemView.findViewById(R.id.keepButton);
-            speakButton = itemView.findViewById(R.id.speakButton);
+
+    static final class StreamHolder extends RecyclerView.ViewHolder {
+        private final ItemMessageStreamingBinding binding;
+
+        StreamHolder(ItemMessageStreamingBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
+        }
+
+        void bind(String text, int textSizeSp) {
+            binding.streamingText.setText(text);
+            binding.streamingText.setTextSize(textSizeSp);
+        }
+    }
+
+    static final class AssistantHolder extends RecyclerView.ViewHolder {
+        private final ItemMessageAssistantBinding binding;
+
+        AssistantHolder(ItemMessageAssistantBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
+        }
+
+        void bind(ChatMessage message, String previousUser, int textSizeSp, ListenListener listener) {
+            binding.correctionText.setTextSize(textSizeSp);
+            binding.explanationText.setTextSize(textSizeSp);
+            binding.replyText.setTextSize(textSizeSp);
+            binding.fallbackText.setTextSize(textSizeSp);
+            String spoken;
+            if (message.fallback) {
+                binding.sections.setVisibility(View.GONE);
+                binding.fallbackText.setVisibility(View.VISIBLE);
+                binding.fallbackText.setText(message.rawText);
+                spoken = message.rawText;
+            } else {
+                binding.sections.setVisibility(View.VISIBLE);
+                binding.fallbackText.setVisibility(View.GONE);
+                int highlight = ContextCompat.getColor(binding.getRoot().getContext(), R.color.highlight_error);
+                if (TutorResponse.looksPerfect(message.correction)) {
+                    binding.correctionText.setText(message.correction);
+                } else {
+                    binding.correctionText.setText(TextDiff.highlight(message.correction, previousUser, highlight));
+                }
+                binding.explanationText.setText(message.explanation);
+                binding.replyText.setText(message.reply);
+                spoken = message.reply == null || message.reply.isEmpty() ? message.rawText : message.reply;
+            }
+            binding.listen.setOnClickListener(v -> {
+                if (spoken != null && !spoken.isEmpty()) {
+                    listener.onListen(spoken);
+                }
+            });
         }
     }
 }

@@ -1,126 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Speak &amp; Grow</string>
-    
-    <!-- Écran principal -->
-    <string name="welcome_message">Hello! I\'m Ana. Let\'s practice English together. How are you today?</string>
-    <string name="listening">Je vous écoute…</string>
-    <string name="thinking">Ana réfléchit…</string>
-    <string name="speaking">Ana parle…</string>
-    <string name="send">Envoyer</string>
-    <string name="type_message">Écrivez en anglais…</string>
-    <string name="cancel">Annuler</string>
-    <string name="nothing_heard">Je n\'ai rien entendu, réessayez</string>
-    <string name="responding_in">Je réponds dans %d…</string>
-    <string name="speak_louder">Parlez plus fort</string>
-    <string name="enable_micro">Activez le micro dans les réglages</string>
-    <string name="free_space">Libérez de l\'espace sur votre téléphone</string>
-    
-    <!-- Correction -->
-    <string name="corrected">Corrigé</string>
-    <string name="well_done">Bien joué !</string>
-    <string name="keep">Garder</string>
-    <string name="explanation">Explication</string>
-    
-    <!-- Écran installation -->
-    <string name="install_models">Installer (une seule fois, avec internet)</string>
-    <string name="already_have_files">J\'ai déjà les fichiers</string>
-    <string name="downloading">Téléchargement…</string>
-    <string name="download_complete">Téléchargement terminé !</string>
-    <string name="download_failed">Échec du téléchargement</string>
-    <string name="checking_space">Vérification de l\'espace…</string>
-    <string name="not_enough_space">Pas assez d\'espace libre</string>
-    <string name="installing">Installation…</string>
-    <string name="ready">Prêt !</string>
-    <string name="download_progress">%d%%</string>
-    
-    <!-- Écran réglages -->
+    <string name="app_name">LangFree</string>
+    <string name="tagline">Discutez en anglais, hors ligne</string>
+    <string name="setup_intro">LangFree corrige vos phrases, explique l\'erreur en français, puis continue la conversation en anglais. Tout se passe sur le téléphone.</string>
+    <string name="model_absent">Aucun modèle IA n\'est installé. Importez un fichier Gemma (.task ou .bin) ou téléchargez Gemma 3 1B.</string>
+    <string name="model_ready">Modèle prêt (%1$d Mo). Vous pouvez discuter sans connexion.</string>
+    <string name="model_help">Le fichier recommandé est gemma3-1b-it-int4.task (environ 530 Mo). Acceptez la licence Gemma sur Hugging Face, créez un jeton de lecture, puis collez-le ci-dessous. Vous pouvez aussi télécharger le fichier sur un ordinateur et l\'importer.</string>
+    <string name="model_page">Ouvrir la page du modèle</string>
+    <string name="import_model">Importer un modèle</string>
+    <string name="download_model">Télécharger Gemma 3 1B</string>
+    <string name="hf_token">Jeton Hugging Face</string>
+    <string name="start_chat">Commencer une conversation</string>
+    <string name="history">Historique</string>
+    <string name="mistakes">Mes erreurs</string>
     <string name="settings">Réglages</string>
-    <string name="level">Niveau</string>
-    <string name="level_a1">A1 - Débutant</string>
-    <string name="level_a2">A2 - Élémentaire</string>
-    <string name="level_b1">B1 - Intermédiaire</string>
-    <string name="level_b2">B2 - Avancé</string>
-    <string name="explanation_language">Langue des explications</string>
-    <string name="french">Français</string>
-    <string name="english_simple">Anglais simple</string>
-    <string name="none">Aucune</string>
-    <string name="voice_speed">Vitesse de la voix</string>
-    <string name="silence_delay">Délai de silence</string>
-    <string name="seconds">%d secondes</string>
-    <string name="mic_sensitivity">Sensibilité du micro</string>
-    <string name="low">Faible</string>
-    <string name="normal">Normale</string>
-    <string name="high">Élevée</string>
-    <string name="model_profile">Profil de modèle</string>
-    <string name="profile_ultra_fast">Ultra rapide (petit téléphone)</string>
-    <string name="profile_fast">Rapide (téléphone standard)</string>
-    <string name="read_correction">Ana lit la correction à voix haute</string>
-    <string name="clear_history">Effacer l\'historique</string>
-    <string name="clear_history_confirm">Voulez-vous vraiment effacer tout l\'historique ?</string>
-    <string name="yes">Oui</string>
-    <string name="no">Non</string>
-    
-    <!-- Thèmes -->
-    <string name="theme">Thème</string>
-    <string name="free_conversation">Conversation libre</string>
-    <string name="daily_life">Vie quotidienne</string>
-    <string name="restaurant">Restaurant</string>
-    <string name="travel">Voyage</string>
-    <string name="work">Travail</string>
-    <string name="job_interview">Entretien d\'embauche</string>
-    
-    <!-- Carnet de vocabulaire -->
-    <string name="vocabulary">Carnet de vocabulaire</string>
-    <string name="no_vocabulary">Pas de mots enregistrés</string>
-    
-    <!-- Permissions -->
-    <string name="mic_permission_title">Permission du micro</string>
-    <string name="mic_permission_message">Cette application a besoin d\'accéder à votre micro pour vous entendre parler.</string>
-    <string name="grant">Autoriser</string>
-    <string name="deny">Refuser</string>
-    
-    <!-- Erreurs -->
-    <string name="error">Erreur</string>
-    <string name="model_not_loaded">Modèle non chargé. Réinstallez l\'application.</string>
-    <string name="tts_not_available">Voix anglaise non disponible. Installez les données vocales.</string>
-    <string name="install_tts">Installer</string>
-    
-    <!-- Tableau des thèmes pour le Spinner -->
-    <string-array name="themes_array">
-        <item>Conversation libre</item>
-        <item>Vie quotidienne</item>
-        <item>Restaurant</item>
-        <item>Voyage</item>
-        <item>Travail</item>
-        <item>Entretien d\'embauche</item>
-    </string-array>
-    
-    <!-- Tableau des niveaux -->
-    <string-array name="levels_array">
-        <item>A1</item>
-        <item>A2</item>
-        <item>B1</item>
-        <item>B2</item>
-    </string-array>
-    
-    <!-- Tableau des langues d'explication -->
-    <string-array name="explanation_languages_array">
-        <item>Français</item>
-        <item>Anglais simple</item>
-        <item>Aucune</item>
-    </string-array>
-    
-    <!-- Tableau des sensibilités -->
-    <string-array name="sensitivity_array">
-        <item>Faible</item>
-        <item>Normale</item>
-        <item>Élevée</item>
-    </string-array>
-    
-    <!-- Tableau des profils de modèle -->
-    <string-array name="model_profiles_array">
-        <item>Ultra rapide</item>
-        <item>Rapide</item>
-    </string-array>
+    <string name="new_chat">Nouvelle conversation</string>
+    <string name="model_importing">Copie du modèle vers le stockage interne…</string>
+    <string name="model_downloading">Téléchargement du modèle… Gardez l\'application ouverte.</string>
+    <string name="model_import_done">Modèle enregistré sur le téléphone.</string>
+    <string name="model_loading">Chargement du modèle… Comptez jusqu\'à une minute. Fermez les autres applications si la mémoire manque.</string>
+    <string name="model_required">Installez d\'abord le modèle IA.</string>
+    <string name="go_setup">Installer</string>
+    <string name="retry">Réessayer</string>
+    <string name="progress_unknown">Préparation…</string>
+    <string name="memory_hint">Mémoire libre : %1$d Mo sur %2$d Mo. 6 Go de RAM sont recommandés.</string>
+    <string name="memory_low">Peu de mémoire libre. Fermez les autres applications avant de lancer l\'IA.</string>
+    <string name="memory_released">Mémoire du modèle libérée.</string>
+    <string name="model_deleted">Modèle supprimé de ce téléphone.</string>
+    <string name="release_memory">Libérer la mémoire</string>
+    <string name="delete_model">Supprimer le modèle</string>
+    <string name="delete_model_confirm">Supprimer le modèle du téléphone ? Vous pourrez l\'importer à nouveau.</string>
+    <string name="delete">Supprimer</string>
+    <string name="cancel">Annuler</string>
+    <string name="ai_typing">L\'IA écrit…</string>
+    <string name="message_hint">Écrivez en anglais…</string>
+    <string name="send">Envoyer</string>
+    <string name="mic">Parler</string>
+    <string name="listen">Écouter la réponse</string>
+    <string name="label_correction">✏️ Correction</string>
+    <string name="label_explanation">💡 Explication</string>
+    <string name="label_reply">💬 Réponse</string>
+    <string name="level_beginner">Débutant (A1-A2)</string>
+    <string name="level_intermediate">Intermédiaire (B1-B2)</string>
+    <string name="level_advanced">Avancé (C1-C2)</string>
+    <string name="mode_gentle">Douce</string>
+    <string name="mode_strict">Stricte</string>
+    <string name="mistake_count">Vu %1$d fois</string>
+    <string name="chat_title">Conversation</string>
+    <string name="chat_empty">Dites bonjour, ou décrivez votre journée. Le tuteur corrige puis relance la discussion.</string>
+    <string name="history_empty">Aucune conversation pour le moment.</string>
+    <string name="delete_conversation">Supprimer cette conversation ?</string>
+    <string name="mistakes_empty">Aucune erreur enregistrée. Elles apparaîtront ici après une correction.</string>
+    <string name="mistakes_intro">Les fautes qui reviennent sont regroupées. Plus le nombre est élevé, plus la faute est fréquente.</string>
+    <string name="mistake_you">Vous avez dit : %1$s</string>
+    <string name="mistake_fixed">Forme corrigée : %1$s</string>
+    <string name="review">Réviser</string>
+    <string name="clear_mistakes">Tout effacer</string>
+    <string name="clear_mistakes_confirm">Effacer tout le carnet d\'erreurs ?</string>
+    <string name="review_title">Révision</string>
+    <string name="review_intro">Réécrivez chaque phrase. Cet exercice est construit sur cet appareil, à partir de vos erreurs.</string>
+    <string name="review_empty">Pas encore d\'erreur à réviser. Discutez d\'abord avec le tuteur.</string>
+    <string name="review_ai_title">Exercice proposé par l\'IA locale</string>
+    <string name="review_model_missing">Le quiz ci-dessous fonctionne déjà. Importez le modèle pour obtenir en plus un exercice rédigé par l\'IA.</string>
+    <string name="review_low_memory">Pas assez de mémoire libre pour lancer l\'IA. Le quiz local reste disponible.</string>
+    <string name="quiz_check">Vérifier</string>
+    <string name="quiz_correct">Bien joué.</string>
+    <string name="quiz_expected">Proposition : %1$s\n%2$s</string>
+    <string name="quiz_empty_attempt">Écrivez votre correction avant de vérifier.</string>
+    <string name="settings_intro">Ces réglages s\'appliquent à chaque nouveau message.</string>
+    <string name="level_title">Niveau</string>
+    <string name="topic_title">Thème de conversation</string>
+    <string name="correction_title">Mode de correction</string>
+    <string name="speech_title">Vitesse de la voix</string>
+    <string name="text_size_title">Taille du texte</string>
+    <string name="theme_title">Thème</string>
+    <string name="theme_system">Système</string>
+    <string name="theme_light">Clair</string>
+    <string name="theme_dark">Sombre</string>
+    <string name="speech_value">Vitesse : %1$.1f×</string>
+    <string name="text_value">Texte : %1$d sp</string>
+    <string name="error_model_not_loaded">Le modèle n\'est pas chargé. Patientez ou revenez à l\'accueil.</string>
+    <string name="error_out_of_memory">Mémoire insuffisante pour exécuter le modèle. Fermez les autres applications. 6 Go de RAM sont recommandés.</string>
+    <string name="error_model_missing">Le modèle est introuvable. Importez-le depuis l\'écran d\'accueil.</string>
+    <string name="error_unsupported_device">Ce processeur n\'est pas pris en charge. Utilisez un téléphone ARM 64 bits.</string>
+    <string name="error_timeout">La génération a pris trop de temps. Réessayez avec une phrase plus courte.</string>
+    <string name="error_cancelled">Génération annulée.</string>
+    <string name="error_model_failed">Le modèle n\'a pas pu répondre. Vérifiez le fichier ou libérez de la mémoire.</string>
+    <string name="error_empty_reply">Le modèle n\'a rien renvoyé. Reformulez votre phrase.</string>
+    <string name="error_conversation">La conversation n\'est pas prête. Réessayez.</string>
+    <string name="error_send">Impossible d\'enregistrer le message.</string>
+    <string name="error_import">Impossible de copier ce fichier.</string>
+    <string name="error_download">Le téléchargement a échoué.</string>
+    <string name="error_no_network">Pas de connexion. Le téléchargement initial a besoin d\'Internet ; ensuite l\'application reste hors ligne.</string>
+    <string name="error_hf_auth">Accès refusé. Acceptez la licence Gemma sur la page du modèle, puis collez un jeton Hugging Face valide.</string>
+    <string name="error_file_too_small">Ce fichier est trop petit pour être un modèle Gemma.</string>
+    <string name="error_no_space">Espace insuffisant. Libérez au moins 700 Mo.</string>
+    <string name="error_delete_model">Impossible de supprimer le modèle.</string>
+    <string name="error_mic_permission">Le micro est refusé. Autorisez-le pour dicter en anglais.</string>
+    <string name="error_mic_unavailable">La reconnaissance vocale n\'est pas installée sur cet appareil.</string>
+    <string name="error_mic_offline">La reconnaissance hors ligne en anglais (États-Unis) n\'est pas disponible. Installez le pack vocal hors ligne dans les paramètres du téléphone.</string>
+    <string name="error_mic_no_match">Je n\'ai pas compris. Réessayez.</string>
+    <string name="error_mic_timeout">Aucune voix détectée.</string>
+    <string name="error_mic_busy">Le micro est déjà utilisé.</string>
+    <string name="error_mic_generic">La reconnaissance vocale a échoué.</string>
+    <string name="error_tts_missing">La voix anglaise hors ligne n\'est pas installée.</string>
+    <string name="install_voice">Installer la voix</string>
+    <string name="open_settings">Paramètres</string>
+    <string name="cd_delete">Supprimer</string>
+    <string name="cd_send">Envoyer le message</string>
+    <string name="cd_mic">Dicter en anglais</string>
+    <string name="cd_listen">Écouter la réponse en anglais</string>
 </resources>

@@ -1,2 +1,0 @@
-ninja: Entering directory `E:\Finatech\code\LangFree\app\.cxx\Debug\2w6w2ku2\x86'
-ninja: no work to do.

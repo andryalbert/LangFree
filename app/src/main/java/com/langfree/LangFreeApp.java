@@ -1,57 +1,51 @@
 package com.langfree;
 
 import android.app.Application;
+import android.content.ComponentCallbacks2;
+import android.content.res.Configuration;
 
-import com.langfree.ai.ModelManager;
-import com.langfree.database.DatabaseHelper;
-import com.langfree.grammar.GrammarEngine;
-import com.langfree.speech.AnaSpeaker;
-import com.langfree.speech.VoskRecognizer;
-import com.langfree.utils.PrefManager;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
 
+import com.langfree.ai.LlmManager;
+import com.langfree.data.SettingsRepository;
+
+/**
+ * Point d'entrée. Le moteur IA est partagé par les écrans et libéré si la RAM devient critique.
+ */
 public class LangFreeApp extends Application {
-    private static LangFreeApp instance;
-    
+    private LlmManager llmManager;
+
     @Override
     public void onCreate() {
         super.onCreate();
-        instance = this;
-        
-        try {
-            // Initialiser les singletons
-            PrefManager.getInstance(this);
-            GrammarEngine.getInstance(this);
-            VoskRecognizer.getInstance(this);
-            AnaSpeaker.getInstance(this);
-            ModelManager.getInstance(this);
-            DatabaseHelper.getInstance(this);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        SettingsRepository settingsRepository = new SettingsRepository(this);
+        AppCompatDelegate.setDefaultNightMode(settingsRepository.load().nightMode);
+        llmManager = new LlmManager();
+        registerComponentCallbacks(new ComponentCallbacks2() {
+            @Override
+            public void onTrimMemory(int level) {
+                // On ne libère pas quand l'app passe simplement en arrière-plan (UI_HIDDEN),
+                // sinon chaque retour sur l'écran rechargerait le modèle.
+                if (level == TRIM_MEMORY_RUNNING_CRITICAL
+                        || level == TRIM_MEMORY_MODERATE
+                        || level >= TRIM_MEMORY_COMPLETE) {
+                    llmManager.release();
+                }
+            }
+
+            @Override
+            public void onConfigurationChanged(@NonNull Configuration newConfig) {
+            }
+
+            @Override
+            public void onLowMemory() {
+                llmManager.release();
+            }
+        });
     }
-    
-    public static LangFreeApp getInstance() {
-        return instance;
-    }
-    
-    @Override
-    public void onTerminate() {
-        super.onTerminate();
-        
-        // Libérer les ressources
-        VoskRecognizer vosk = VoskRecognizer.getInstance(this);
-        if (vosk != null) {
-            vosk.release();
-        }
-        
-        AnaSpeaker speaker = AnaSpeaker.getInstance(this);
-        if (speaker != null) {
-            speaker.release();
-        }
-        
-        ModelManager modelManager = ModelManager.getInstance(this);
-        if (modelManager != null) {
-            modelManager.unloadLlmModel();
-        }
+
+    public LlmManager getLlmManager() {
+        return llmManager;
     }
 }
