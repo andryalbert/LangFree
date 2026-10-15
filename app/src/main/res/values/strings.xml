@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">LangFree</string>
+    <string name="app_name">Speak &amp; Grow</string>
     <string name="tagline">Discutez en anglais, hors ligne</string>
-    <string name="setup_intro">LangFree corrige vos phrases, explique l\'erreur en français, puis continue la conversation en anglais. Tout se passe sur le téléphone.</string>
+    <string name="setup_intro">Speak &amp; Grow corrige vos phrases, explique l\'erreur en français, puis continue la conversation en anglais. Tout se passe sur le téléphone.</string>
     <string name="model_absent">Aucun modèle IA n\'est installé. Importez un fichier Gemma (.task ou .bin) ou téléchargez Gemma 3 1B.</string>
     <string name="model_ready">Modèle prêt (%1$d Mo). Vous pouvez discuter sans connexion.</string>
     <string name="model_help">Gemma 3 1B (environ 530 Mo) se télécharge une seule fois, sans compte. Acceptez la licence, puis l\'application reste hors ligne. Vous pouvez aussi importer un fichier .task.</string>
