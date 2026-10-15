@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.langfree.R;
 import com.langfree.data.SettingsRepository;
 import com.langfree.databinding.ActivitySetupBinding;
 import com.langfree.utils.ModelStorage;
@@ -60,9 +61,15 @@ public class SetupActivity extends AppCompatActivity {
         viewModel.status.observe(this, binding.status::setText);
         viewModel.memoryHint.observe(this, binding.memory::setText);
         viewModel.message.observe(this, signal -> {
-            if (signal != null && !signal.message.isEmpty()) {
-                Snackbar.make(binding.getRoot(), signal.message, Snackbar.LENGTH_LONG).show();
+            if (signal == null || signal.message.isEmpty()) {
+                return;
             }
+            Snackbar snackbar = Snackbar.make(binding.getRoot(), signal.message, Snackbar.LENGTH_LONG);
+            if (signal.message.equals(getString(R.string.error_hf_auth))) {
+                snackbar.setAction(R.string.open_license, v ->
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(ModelStorage.MODEL_PAGE))));
+            }
+            snackbar.show();
         });
 
         binding.openModelPage.setOnClickListener(v -> {

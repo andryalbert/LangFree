@@ -13,10 +13,13 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Copie locale (sélecteur de fichiers) ou téléchargement unique du modèle Gemma.
- * Le jeton Hugging Face n'est envoyé qu'à huggingface.co, pas aux redirections CDN.
+ * Le jeton n'est envoyé qu'à huggingface.co. Les adresses de téléchargement signées
+ * (CDN) refusent la requête si le jeton les accompagne.
  */
 public final class ModelDownloader {
     public enum Reason {
@@ -43,6 +46,7 @@ public final class ModelDownloader {
     private static final long MAX_BYTES = 2_500_000_000L;
     private static final int CONNECT_TIMEOUT_MS = 20_000;
     private static final int READ_TIMEOUT_MS = 60_000;
+    private static final Pattern TOKEN_PATTERN = Pattern.compile("hf_[A-Za-z0-9]{8,}");
 
     private ModelDownloader() {
     }
@@ -90,10 +94,14 @@ public final class ModelDownloader {
             throw new TransferException(Reason.NO_NETWORK, "hors ligne");
         }
         ensureSpace(context, 700L * 1024L * 1024L);
+        String accessToken = normalizeToken(token);
+        if (accessToken.isEmpty()) {
+            throw new TransferException(Reason.AUTH, "jeton vide");
+        }
         File partial = ModelStorage.partialFile(context);
         HttpURLConnection connection = null;
         try {
-            connection = openFollowingRedirects(ModelStorage.DOWNLOAD_URL, token);
+            connection = openFollowingRedirects(ModelStorage.DOWNLOAD_URL, accessToken);
             int code = connection.getResponseCode();
             if (code == HttpURLConnection.HTTP_UNAUTHORIZED || code == HttpURLConnection.HTTP_FORBIDDEN) {
                 throw new TransferException(Reason.AUTH, "HTTP " + code);
@@ -187,11 +195,11 @@ public final class ModelDownloader {
             connection.setInstanceFollowRedirects(false);
             connection.setConnectTimeout(CONNECT_TIMEOUT_MS);
             connection.setReadTimeout(READ_TIMEOUT_MS);
-            connection.setRequestProperty("User-Agent", "LangFree/1.0");
-            connection.setRequestProperty("Accept", "application/octet-stream");
-            if (token != null && !token.isEmpty() && current.getHost() != null
-                    && current.getHost().contains("huggingface.co")) {
-                connection.setRequestProperty("Authorization", "Bearer " + token.trim());
+            connection.setRequestProperty("User-Agent", "huggingface_hub/0.26.0; langfree/1.0");
+            connection.setRequestProperty("Accept", "*/*");
+            // Uniquement le site du modèle. cdn-lfs et cas-bridge refusent le jeton (403).
+            if (token != null && !token.isEmpty() && isModelHubHost(current.getHost())) {
+                connection.setRequestProperty("Authorization", "Bearer " + token);
             }
             int code = connection.getResponseCode();
             if (code == HttpURLConnection.HTTP_MOVED_PERM
@@ -213,5 +221,26 @@ public final class ModelDownloader {
             connection.disconnect();
         }
         throw new IOException("trop de redirections");
+    }
+
+    /** Garde le jeton hf_… même s'il est collé avec « Bearer », des guillemets ou une phrase. */
+    static String normalizeToken(String raw) {
+        if (raw == null) {
+            return "";
+        }
+        String trimmed = raw.trim();
+        if (trimmed.regionMatches(true, 0, "Bearer ", 0, 7)) {
+            trimmed = trimmed.substring(7).trim();
+        }
+        trimmed = trimmed.replace("\"", "").replace("'", "");
+        Matcher matcher = TOKEN_PATTERN.matcher(trimmed);
+        if (matcher.find()) {
+            return matcher.group();
+        }
+        return trimmed;
+    }
+
+    private static boolean isModelHubHost(String host) {
+        return "huggingface.co".equalsIgnoreCase(host) || "www.huggingface.co".equalsIgnoreCase(host);
     }
 }

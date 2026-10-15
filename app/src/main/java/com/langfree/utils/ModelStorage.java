@@ -13,7 +13,7 @@ public final class ModelStorage {
     /** En dessous de ce poids, le fichier est un échec de téléchargement (page HTML, etc.). */
     public static final long MIN_BYTES = 80L * 1024L * 1024L;
     public static final String DOWNLOAD_URL =
-            "https://huggingface.co/litert-community/Gemma3-1B-IT/resolve/main/gemma3-1b-it-int4.task";
+            "https://huggingface.co/litert-community/Gemma3-1B-IT/resolve/main/gemma3-1b-it-int4.task?download=true";
     public static final String MODEL_PAGE =
             "https://huggingface.co/litert-community/Gemma3-1B-IT";
 
