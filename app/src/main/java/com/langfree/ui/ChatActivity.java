@@ -5,7 +5,6 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.speech.SpeechRecognizer;
@@ -49,7 +48,6 @@ public class ChatActivity extends AppCompatActivity {
     private SpeechInput speechInput;
     private SpeechOutput speechOutput;
     private boolean englishVoiceReady;
-    private boolean speechPackNoticeShown;
 
     private final ActivityResultLauncher<String> micPermission =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), granted -> {
@@ -130,7 +128,7 @@ public class ChatActivity extends AppCompatActivity {
         });
         viewModel.error.observe(this, signal -> {
             if (signal != null && !signal.message.isEmpty()) {
-                snack(signal.message, false);
+                snack(signal.message);
             }
         });
 
@@ -269,10 +267,8 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private void onMicClicked() {
-        if (speechInput.isBusy()) {
-            if (speechInput.isListening()) {
-                speechInput.stop();
-            }
+        if (speechInput.isListening()) {
+            speechInput.stop();
             return;
         }
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
@@ -288,45 +284,22 @@ public class ChatActivity extends AppCompatActivity {
         try {
             speechInput.start(this, new SpeechInput.Callback() {
                 @Override
-                public void onPartial(String text) {
-                    binding.input.setText(text);
-                    binding.input.setSelection(binding.input.getText() == null ? 0 : binding.input.getText().length());
-                }
-
-                @Override
                 public void onResult(String text) {
-                    speechPackNoticeShown = false;
                     if (!text.isEmpty()) {
-                        binding.input.setText(text);
-                        binding.input.setSelection(text.length());
-                    }
-                }
-
-                @Override
-                public void onDownloadProgress(int percent) {
-                    if (percent < 0) {
-                        speechPackNoticeShown = false;
-                        snack(getString(R.string.speech_pack_scheduled), false);
-                        return;
-                    }
-                    if (!speechPackNoticeShown) {
-                        speechPackNoticeShown = true;
-                        snack(getString(R.string.speech_pack_downloading), false);
+                        viewModel.send(text);
                     }
                 }
 
                 @Override
                 public void onError(int code, String message) {
-                    speechPackNoticeShown = false;
-                    if (needsSpeechPack(code)) {
-                        offerSpeechPack();
+                    if (isSpeechPackMessage(code)) {
                         return;
                     }
-                    snack(speechError(code), false);
+                    snack(speechError(code));
                 }
             });
         } catch (RuntimeException exception) {
-            snack(getString(R.string.error_mic_generic), false);
+            snack(getString(R.string.error_mic_generic));
         }
     }
 
@@ -339,7 +312,7 @@ public class ChatActivity extends AppCompatActivity {
             case SpeechRecognizer.ERROR_SERVER:
             case SpeechRecognizer.ERROR_LANGUAGE_NOT_SUPPORTED:
             case SpeechRecognizer.ERROR_LANGUAGE_UNAVAILABLE:
-                return getString(R.string.error_mic_offline);
+                return getString(R.string.error_mic_generic);
             case SpeechRecognizer.ERROR_NO_MATCH:
                 return getString(R.string.error_mic_no_match);
             case SpeechRecognizer.ERROR_SPEECH_TIMEOUT:
@@ -368,11 +341,12 @@ public class ChatActivity extends AppCompatActivity {
         try {
             startActivity(new Intent(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA));
         } catch (ActivityNotFoundException exception) {
-            snack(getString(R.string.error_tts_missing), false);
+            snack(getString(R.string.error_tts_missing));
         }
     }
 
-    private boolean needsSpeechPack(int code) {
+    /** Ces codes déclenchaient le message sur le pack hors ligne. On ne l'affiche plus. */
+    private boolean isSpeechPackMessage(int code) {
         return code == SpeechRecognizer.ERROR_NETWORK
                 || code == SpeechRecognizer.ERROR_NETWORK_TIMEOUT
                 || code == SpeechRecognizer.ERROR_SERVER
@@ -380,34 +354,8 @@ public class ChatActivity extends AppCompatActivity {
                 || code == SpeechRecognizer.ERROR_LANGUAGE_UNAVAILABLE;
     }
 
-    private void offerSpeechPack() {
-        Snackbar.make(binding.getRoot(), R.string.error_mic_offline, Snackbar.LENGTH_LONG)
-                .setAction(R.string.download_speech_pack, v -> {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-                        startListening();
-                    } else {
-                        openVoiceOrAppSettings();
-                    }
-                })
-                .show();
-    }
-
-    private void snack(String text, boolean offerSettings) {
-        Snackbar bar = Snackbar.make(binding.getRoot(), text, Snackbar.LENGTH_LONG);
-        if (offerSettings) {
-            bar.setAction(R.string.open_settings, v -> openVoiceOrAppSettings());
-        }
-        bar.show();
-    }
-
-    private void openVoiceOrAppSettings() {
-        try {
-            startActivity(new Intent(Settings.ACTION_VOICE_INPUT_SETTINGS));
-        } catch (ActivityNotFoundException exception) {
-            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-            intent.setData(Uri.fromParts("package", getPackageName(), null));
-            startActivity(intent);
-        }
+    private void snack(String text) {
+        Snackbar.make(binding.getRoot(), text, Snackbar.LENGTH_LONG).show();
     }
 
     private void scrollToEnd() {
