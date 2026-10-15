@@ -29,6 +29,7 @@ import com.langfree.R;
 import com.langfree.data.SettingsRepository;
 import com.langfree.databinding.ActivityChatBinding;
 import com.langfree.model.Conversation;
+import com.langfree.model.CorrectionMode;
 import com.langfree.model.Level;
 import com.langfree.model.Topic;
 import com.langfree.utils.SpeechInput;
@@ -166,6 +167,7 @@ public class ChatActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         viewModel.refreshTextSize();
+        viewModel.applyCurrentSettings();
         viewModel.ensureModelLoaded();
         speechOutput.setRate(new SettingsRepository(this).load().speechRate);
     }
@@ -234,7 +236,8 @@ public class ChatActivity extends AppCompatActivity {
             return;
         }
         getSupportActionBar().setTitle(Level.labelOf(conversation.level));
-        getSupportActionBar().setSubtitle(Topic.labelOf(conversation.topic));
+        getSupportActionBar().setSubtitle(Topic.labelOf(conversation.topic)
+                + " · " + CorrectionMode.fromName(conversation.correctionMode).labelFr);
     }
 
     private void showModelPhase(ChatViewModel.ModelPhase phase) {

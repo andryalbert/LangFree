@@ -107,6 +107,17 @@ public class ChatViewModel extends AndroidViewModel {
         textSizeSp.setValue(settingsRepository.load().textSizeSp);
     }
 
+    /** Applique les réglages courants au fil ouvert, pour que le titre suive l'écran Réglages. */
+    public void applyCurrentSettings() {
+        Long id = conversationId.getValue();
+        if (id == null || id <= 0) {
+            return;
+        }
+        UserSettings settings = settingsRepository.load();
+        long conversation = id;
+        io.execute(() -> repository.applySettings(conversation, settings));
+    }
+
     public void ensureModelLoaded() {
         if (llmManager.isLoaded()) {
             modelPhase.setValue(ModelPhase.READY);

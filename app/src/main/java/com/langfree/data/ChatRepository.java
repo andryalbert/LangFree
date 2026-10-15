@@ -141,6 +141,19 @@ public class ChatRepository {
         mistakeDao.deleteAll();
     }
 
+    /** Recopie niveau, thème et mode sur la conversation ouverte, sans attendre un nouveau message. */
+    public void applySettings(long conversationId, UserSettings settings) {
+        checkBackground();
+        Conversation conversation = conversationDao.getById(conversationId);
+        if (conversation == null || settings == null) {
+            return;
+        }
+        conversation.level = settings.level.name();
+        conversation.topic = settings.topic.name();
+        conversation.correctionMode = settings.correctionMode.name();
+        conversationDao.update(conversation);
+    }
+
     private void touchConversation(long conversationId, String firstUserText,
                                     UserSettings settings, long now, boolean maybeTitle) {
         Conversation conversation = conversationDao.getById(conversationId);
