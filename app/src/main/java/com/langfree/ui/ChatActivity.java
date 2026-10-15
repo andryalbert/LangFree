@@ -5,6 +5,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.speech.SpeechRecognizer;
@@ -48,6 +49,7 @@ public class ChatActivity extends AppCompatActivity {
     private SpeechInput speechInput;
     private SpeechOutput speechOutput;
     private boolean englishVoiceReady;
+    private boolean speechPackNoticeShown;
 
     private final ActivityResultLauncher<String> micPermission =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), granted -> {
@@ -267,8 +269,10 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private void onMicClicked() {
-        if (speechInput.isListening()) {
-            speechInput.stop();
+        if (speechInput.isBusy()) {
+            if (speechInput.isListening()) {
+                speechInput.stop();
+            }
             return;
         }
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
@@ -291,6 +295,7 @@ public class ChatActivity extends AppCompatActivity {
 
                 @Override
                 public void onResult(String text) {
+                    speechPackNoticeShown = false;
                     if (!text.isEmpty()) {
                         binding.input.setText(text);
                         binding.input.setSelection(text.length());
@@ -298,11 +303,26 @@ public class ChatActivity extends AppCompatActivity {
                 }
 
                 @Override
+                public void onDownloadProgress(int percent) {
+                    if (percent < 0) {
+                        speechPackNoticeShown = false;
+                        snack(getString(R.string.speech_pack_scheduled), false);
+                        return;
+                    }
+                    if (!speechPackNoticeShown) {
+                        speechPackNoticeShown = true;
+                        snack(getString(R.string.speech_pack_downloading), false);
+                    }
+                }
+
+                @Override
                 public void onError(int code, String message) {
-                    snack(speechError(code), code == SpeechRecognizer.ERROR_NETWORK
-                            || code == SpeechRecognizer.ERROR_NETWORK_TIMEOUT
-                            || code == 12
-                            || code == 13);
+                    speechPackNoticeShown = false;
+                    if (needsSpeechPack(code)) {
+                        offerSpeechPack();
+                        return;
+                    }
+                    snack(speechError(code), false);
                 }
             });
         } catch (RuntimeException exception) {
@@ -317,8 +337,8 @@ public class ChatActivity extends AppCompatActivity {
             case SpeechRecognizer.ERROR_NETWORK:
             case SpeechRecognizer.ERROR_NETWORK_TIMEOUT:
             case SpeechRecognizer.ERROR_SERVER:
-            case 12:
-            case 13:
+            case SpeechRecognizer.ERROR_LANGUAGE_NOT_SUPPORTED:
+            case SpeechRecognizer.ERROR_LANGUAGE_UNAVAILABLE:
                 return getString(R.string.error_mic_offline);
             case SpeechRecognizer.ERROR_NO_MATCH:
                 return getString(R.string.error_mic_no_match);
@@ -350,6 +370,26 @@ public class ChatActivity extends AppCompatActivity {
         } catch (ActivityNotFoundException exception) {
             snack(getString(R.string.error_tts_missing), false);
         }
+    }
+
+    private boolean needsSpeechPack(int code) {
+        return code == SpeechRecognizer.ERROR_NETWORK
+                || code == SpeechRecognizer.ERROR_NETWORK_TIMEOUT
+                || code == SpeechRecognizer.ERROR_SERVER
+                || code == SpeechRecognizer.ERROR_LANGUAGE_NOT_SUPPORTED
+                || code == SpeechRecognizer.ERROR_LANGUAGE_UNAVAILABLE;
+    }
+
+    private void offerSpeechPack() {
+        Snackbar.make(binding.getRoot(), R.string.error_mic_offline, Snackbar.LENGTH_LONG)
+                .setAction(R.string.download_speech_pack, v -> {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                        startListening();
+                    } else {
+                        openVoiceOrAppSettings();
+                    }
+                })
+                .show();
     }
 
     private void snack(String text, boolean offerSettings) {

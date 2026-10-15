@@ -100,7 +100,10 @@
     <string name="error_delete_model">Impossible de supprimer le modèle.</string>
     <string name="error_mic_permission">Le micro est refusé. Autorisez-le pour dicter en anglais.</string>
     <string name="error_mic_unavailable">La reconnaissance vocale n\'est pas installée sur cet appareil.</string>
-    <string name="error_mic_offline">La reconnaissance hors ligne en anglais (États-Unis) n\'est pas disponible. Installez le pack vocal hors ligne dans les paramètres du téléphone.</string>
+    <string name="error_mic_offline">La reconnaissance anglaise hors ligne n\'est pas installée sur ce téléphone.</string>
+    <string name="download_speech_pack">Télécharger</string>
+    <string name="speech_pack_downloading">Téléchargement du pack vocal anglais. Gardez la connexion : cela ne se fait qu\'une fois.</string>
+    <string name="speech_pack_scheduled">Le pack vocal anglais sera téléchargé quand le téléphone sera en Wi-Fi.</string>
     <string name="error_mic_no_match">Je n\'ai pas compris. Réessayez.</string>
     <string name="error_mic_timeout">Aucune voix détectée.</string>
     <string name="error_mic_busy">Le micro est déjà utilisé.</string>
