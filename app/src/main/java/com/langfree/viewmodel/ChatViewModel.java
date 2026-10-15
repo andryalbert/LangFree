@@ -53,7 +53,7 @@ public class ChatViewModel extends AndroidViewModel {
     private final LlmManager llmManager;
     private final ExecutorService io = Executors.newSingleThreadExecutor();
     private final AtomicInteger generation = new AtomicInteger();
-    private boolean opened;
+    private volatile boolean opened;
 
     public ChatViewModel(@NonNull Application application) {
         super(application);
@@ -93,8 +93,13 @@ public class ChatViewModel extends AndroidViewModel {
             return;
         }
         io.execute(() -> {
-            long created = repository.createConversation(settingsRepository.load());
-            conversationId.postValue(created);
+            try {
+                long created = repository.createConversation(settingsRepository.load());
+                conversationId.postValue(created);
+            } catch (RuntimeException failure) {
+                opened = false;
+                error.postValue(new UiSignal(getApplication().getString(R.string.error_conversation)));
+            }
         });
     }
 
