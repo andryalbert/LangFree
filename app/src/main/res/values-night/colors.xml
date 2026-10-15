@@ -17,5 +17,5 @@
     <color name="highlight_error">#8A5A2A</color>
     <color name="success">#8ED6B0</color>
     <color name="error">#F2B8B5</color>
-    <color name="ic_launcher_background">#1F6B5A</color>
+    <color name="ic_launcher_background">#FFFFFF</color>
 </resources>
