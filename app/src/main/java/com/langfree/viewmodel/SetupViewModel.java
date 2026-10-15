@@ -82,7 +82,7 @@ public class SetupViewModel extends AndroidViewModel {
         });
     }
 
-    public void downloadModel(String token) {
+    public void downloadModel() {
         if (Boolean.TRUE.equals(busy.getValue())) {
             return;
         }
@@ -92,7 +92,7 @@ public class SetupViewModel extends AndroidViewModel {
         io.execute(() -> {
             try {
                 awaitRelease();
-                ModelDownloader.download(getApplication(), token, (percent, copied, total) ->
+                ModelDownloader.download(getApplication(), (percent, copied, total) ->
                         progress.postValue(percent));
                 busy.postValue(false);
                 progress.postValue(100);
@@ -124,7 +124,7 @@ public class SetupViewModel extends AndroidViewModel {
                 text = getApplication().getString(R.string.error_no_network);
                 break;
             case AUTH:
-                text = getApplication().getString(R.string.error_hf_auth);
+                text = getApplication().getString(R.string.error_model_unavailable);
                 break;
             case TOO_SMALL:
                 text = getApplication().getString(R.string.error_file_too_small);

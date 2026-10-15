@@ -12,10 +12,10 @@ public final class ModelStorage {
     public static final String FILE_NAME = "llm-model.task";
     /** En dessous de ce poids, le fichier est un échec de téléchargement (page HTML, etc.). */
     public static final long MIN_BYTES = 80L * 1024L * 1024L;
+    /** Release publique du dépôt. Aucun compte ni jeton n'est demandé à l'utilisateur. */
     public static final String DOWNLOAD_URL =
-            "https://huggingface.co/litert-community/Gemma3-1B-IT/resolve/main/gemma3-1b-it-int4.task?download=true";
-    public static final String MODEL_PAGE =
-            "https://huggingface.co/litert-community/Gemma3-1B-IT";
+            "https://github.com/andryalbert/LangFree/releases/download/gemma3-1b-it-int4/gemma3-1b-it-int4.task";
+    public static final String TERMS_URL = "https://ai.google.dev/gemma/terms";
 
     private ModelStorage() {
     }

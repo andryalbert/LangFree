@@ -11,8 +11,7 @@ import com.langfree.model.Topic;
 import com.langfree.model.UserSettings;
 
 /**
- * Préférences locales : niveau, thème, voix, taille du texte, mode nuit, jeton Hugging Face.
- * Le jeton ne sert qu'au premier téléchargement du modèle et reste dans l'espace privé de l'app.
+ * Préférences locales : niveau, thème, voix, taille du texte, mode nuit.
  */
 public class SettingsRepository {
     private static final String PREFS = "langfree_settings";
@@ -22,7 +21,6 @@ public class SettingsRepository {
     private static final String KEY_RATE = "speech_rate";
     private static final String KEY_TEXT = "text_size_sp";
     private static final String KEY_NIGHT = "night_mode";
-    private static final String KEY_TOKEN = "hf_token";
 
     private final SharedPreferences preferences;
 
@@ -58,14 +56,5 @@ public class SettingsRepository {
                 .putInt(KEY_TEXT, settings.textSizeSp)
                 .putInt(KEY_NIGHT, settings.nightMode)
                 .apply();
-    }
-
-    public String getHfToken() {
-        return preferences.getString(KEY_TOKEN, "");
-    }
-
-    public void setHfToken(String token) {
-        String value = token == null ? "" : token.trim();
-        preferences.edit().putString(KEY_TOKEN, value).apply();
     }
 }

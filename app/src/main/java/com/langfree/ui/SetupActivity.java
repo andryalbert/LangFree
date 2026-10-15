@@ -10,9 +10,9 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 import com.langfree.R;
-import com.langfree.data.SettingsRepository;
 import com.langfree.databinding.ActivitySetupBinding;
 import com.langfree.utils.ModelStorage;
 import com.langfree.viewmodel.SetupViewModel;
@@ -32,9 +32,6 @@ public class SetupActivity extends AppCompatActivity {
         binding = ActivitySetupBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         viewModel = new ViewModelProvider(this).get(SetupViewModel.class);
-
-        SettingsRepository settings = new SettingsRepository(this);
-        binding.token.setText(settings.getHfToken());
 
         viewModel.modelReady.observe(this, ready ->
                 binding.startChat.setEnabled(Boolean.TRUE.equals(ready) && !Boolean.TRUE.equals(viewModel.busy.getValue())));
@@ -64,23 +61,11 @@ public class SetupActivity extends AppCompatActivity {
             if (signal == null || signal.message.isEmpty()) {
                 return;
             }
-            Snackbar snackbar = Snackbar.make(binding.getRoot(), signal.message, Snackbar.LENGTH_LONG);
-            if (signal.message.equals(getString(R.string.error_hf_auth))) {
-                snackbar.setAction(R.string.open_license, v ->
-                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(ModelStorage.MODEL_PAGE))));
-            }
-            snackbar.show();
+            Snackbar.make(binding.getRoot(), signal.message, Snackbar.LENGTH_LONG).show();
         });
 
-        binding.openModelPage.setOnClickListener(v -> {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(ModelStorage.MODEL_PAGE));
-            startActivity(intent);
-        });
-        binding.download.setOnClickListener(v -> {
-            String token = textOf(binding.token.getText());
-            settings.setHfToken(token);
-            viewModel.downloadModel(token);
-        });
+        binding.openTerms.setOnClickListener(v -> openTerms());
+        binding.download.setOnClickListener(v -> confirmTermsThenDownload());
         binding.importModel.setOnClickListener(v -> openDocument.launch(new String[]{"*/*"}));
         binding.startChat.setOnClickListener(v ->
                 startActivity(new Intent(this, ChatActivity.class)));
@@ -106,7 +91,17 @@ public class SetupActivity extends AppCompatActivity {
         }
     }
 
-    private static String textOf(CharSequence value) {
-        return value == null ? "" : value.toString().trim();
+    /** La licence Gemma exige un accord avant de distribuer le modèle. */
+    private void confirmTermsThenDownload() {
+        new MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.gemma_terms_title)
+                .setMessage(R.string.gemma_terms_message)
+                .setNegativeButton(R.string.cancel, null)
+                .setPositiveButton(R.string.accept_gemma_terms, (dialog, which) -> viewModel.downloadModel())
+                .show();
+    }
+
+    private void openTerms() {
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(ModelStorage.TERMS_URL)));
     }
 }

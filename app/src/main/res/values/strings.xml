@@ -5,11 +5,13 @@
     <string name="setup_intro">LangFree corrige vos phrases, explique l\'erreur en français, puis continue la conversation en anglais. Tout se passe sur le téléphone.</string>
     <string name="model_absent">Aucun modèle IA n\'est installé. Importez un fichier Gemma (.task ou .bin) ou téléchargez Gemma 3 1B.</string>
     <string name="model_ready">Modèle prêt (%1$d Mo). Vous pouvez discuter sans connexion.</string>
-    <string name="model_help">Le fichier recommandé est gemma3-1b-it-int4.task (environ 530 Mo). Acceptez la licence Gemma sur Hugging Face, créez un jeton de lecture, puis collez-le ci-dessous. Vous pouvez aussi télécharger le fichier sur un ordinateur et l\'importer.</string>
-    <string name="model_page">Ouvrir la page du modèle</string>
+    <string name="model_help">Gemma 3 1B (environ 530 Mo) se télécharge une seule fois, sans compte. Acceptez la licence, puis l\'application reste hors ligne. Vous pouvez aussi importer un fichier .task.</string>
+    <string name="read_gemma_terms">Lire la licence Gemma</string>
+    <string name="gemma_terms_title">Licence Gemma</string>
+    <string name="gemma_terms_message">Gemma est fourni selon les Gemma Terms of Use, sur ai.google.dev/gemma/terms. Ces conditions incluent des usages interdits. En appuyant sur J\'accepte, vous les acceptez. Le fichier reste sur ce téléphone.</string>
+    <string name="accept_gemma_terms">J\'accepte</string>
     <string name="import_model">Importer un modèle</string>
     <string name="download_model">Télécharger Gemma 3 1B</string>
-    <string name="hf_token">Jeton Hugging Face</string>
     <string name="start_chat">Commencer une conversation</string>
     <string name="history">Historique</string>
     <string name="mistakes">Mes erreurs</string>
@@ -92,8 +94,7 @@
     <string name="error_import">Impossible de copier ce fichier.</string>
     <string name="error_download">Le téléchargement a échoué.</string>
     <string name="error_no_network">Pas de connexion. Le téléchargement initial a besoin d\'Internet ; ensuite l\'application reste hors ligne.</string>
-    <string name="error_hf_auth">Accès refusé. Sur la page du modèle, connectez-vous et cliquez sur Acknowledge license, puis collez un jeton de lecture qui commence par hf_.</string>
-    <string name="open_license">Ouvrir la licence</string>
+    <string name="error_model_unavailable">Le modèle n\'est pas disponible pour le moment. Réessayez plus tard, ou importez le fichier.</string>
     <string name="error_file_too_small">Ce fichier est trop petit pour être un modèle Gemma.</string>
     <string name="error_no_space">Espace insuffisant. Libérez au moins 700 Mo.</string>
     <string name="error_delete_model">Impossible de supprimer le modèle.</string>
