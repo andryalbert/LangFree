@@ -1,8 +1,10 @@
 package com.langfree.utils;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.provider.Settings;
+
+import com.langfree.data.AppDatabase;
+import com.langfree.model.DeviceLicenseEntry;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -23,8 +25,6 @@ public final class DeviceLicense {
     public static final String LIST_URL =
             "https://raw.githubusercontent.com/andryalbert/LangFree/main/licenses.json";
 
-    private static final String PREFS = "langfree_license";
-    private static final String KEY_CODE = "accepted_code";
     private static final String ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
     private static final int CODE_LENGTH = 8;
 
@@ -57,17 +57,39 @@ public final class DeviceLicense {
         }
     }
 
-    public static boolean isAccepted(Context context) {
-        String saved = prefs(context).getString(KEY_CODE, "");
-        return deviceCode(context).equals(saved);
+    /** Vrai si l'empreinte de ce téléphone est déjà dans la base. À appeler hors du thread UI. */
+    public static boolean isStored(Context context) {
+        String hash = hashOf(deviceCode(context));
+        if (hash.isEmpty()) {
+            return false;
+        }
+        return AppDatabase.getInstance(context).deviceLicenseDao().count(hash) > 0;
     }
 
+    /** Enregistre l'empreinte du code après une vérification réussie. Hors du thread UI. */
     public static void remember(Context context) {
-        prefs(context).edit().putString(KEY_CODE, deviceCode(context)).apply();
+        String hash = hashOf(deviceCode(context));
+        if (hash.isEmpty()) {
+            return;
+        }
+        DeviceLicenseEntry entry = new DeviceLicenseEntry();
+        entry.codeHash = hash;
+        entry.acceptedAt = System.currentTimeMillis();
+        AppDatabase.getInstance(context).deviceLicenseDao().insert(entry);
     }
 
-    public static void clear(Context context) {
-        prefs(context).edit().remove(KEY_CODE).apply();
+    private static String hashOf(String code) {
+        try {
+            byte[] digest = MessageDigest.getInstance("SHA-256")
+                    .digest(normalize(code).getBytes(StandardCharsets.UTF_8));
+            StringBuilder hex = new StringBuilder(digest.length * 2);
+            for (byte value : digest) {
+                hex.append(String.format(Locale.ROOT, "%02x", value & 0xff));
+            }
+            return hex.toString();
+        } catch (Exception exception) {
+            return "";
+        }
     }
 
     /** @return vrai si le code de cet appareil est dans la liste. */
@@ -147,9 +169,5 @@ public final class DeviceLicense {
             return "";
         }
         return code.toUpperCase(Locale.ROOT).replaceAll("[^A-Z2-9]", "");
-    }
-
-    private static SharedPreferences prefs(Context context) {
-        return context.getApplicationContext().getSharedPreferences(PREFS, Context.MODE_PRIVATE);
     }
 }

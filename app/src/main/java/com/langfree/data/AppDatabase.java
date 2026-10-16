@@ -12,6 +12,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.langfree.model.ChatMessage;
 import com.langfree.model.Conversation;
+import com.langfree.model.DeviceLicenseEntry;
 import com.langfree.model.Mistake;
 import com.langfree.model.QuizSession;
 import com.langfree.model.QuizTurn;
@@ -22,8 +23,9 @@ import java.io.File;
  * Base SQLite locale. Les conversations, messages et erreurs y sont stockés.
  */
 @Database(
-        entities = {Conversation.class, ChatMessage.class, Mistake.class, QuizSession.class, QuizTurn.class},
-        version = 2,
+        entities = {Conversation.class, ChatMessage.class, Mistake.class, QuizSession.class, QuizTurn.class,
+                DeviceLicenseEntry.class},
+        version = 3,
         exportSchema = false
 )
 public abstract class AppDatabase extends RoomDatabase {
@@ -39,6 +41,18 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract QuizSessionDao quizSessionDao();
 
     public abstract QuizTurnDao quizTurnDao();
+
+    public abstract DeviceLicenseDao deviceLicenseDao();
+
+    private static final Migration MIGRATION_2_3 = new Migration(2, 3) {
+        @Override
+        public void migrate(SupportSQLiteDatabase database) {
+            database.execSQL("CREATE TABLE IF NOT EXISTS `device_licenses` ("
+                    + "`codeHash` TEXT NOT NULL, "
+                    + "`acceptedAt` INTEGER NOT NULL, "
+                    + "PRIMARY KEY(`codeHash`))");
+        }
+    };
 
     private static final Migration MIGRATION_1_2 = new Migration(1, 2) {
         @Override
@@ -70,7 +84,7 @@ public abstract class AppDatabase extends RoomDatabase {
                     Context app = context.getApplicationContext();
                     discardLegacyDatabase(app);
                     instance = Room.databaseBuilder(app, AppDatabase.class, NAME)
-                            .addMigrations(MIGRATION_1_2)
+                            .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
                             .fallbackToDestructiveMigration()
                             .build();
                 }

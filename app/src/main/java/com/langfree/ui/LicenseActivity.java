@@ -26,10 +26,23 @@ public class LicenseActivity extends AppCompatActivity {
         binding.code.setText(DeviceLicense.deviceCode(this));
         binding.copy.setOnClickListener(v -> copyCode());
         binding.verify.setOnClickListener(v -> verify());
-
-        if (DeviceLicense.isAccepted(this)) {
-            openApp();
-        }
+        setBusy(true);
+        binding.form.setVisibility(View.GONE);
+        Thread thread = new Thread(() -> {
+            boolean stored = DeviceLicense.isStored(this);
+            runOnUiThread(() -> {
+                if (isFinishing()) {
+                    return;
+                }
+                if (stored) {
+                    openApp();
+                    return;
+                }
+                setBusy(false);
+                binding.form.setVisibility(View.VISIBLE);
+            });
+        }, "langfree-license-local");
+        thread.start();
     }
 
     private void copyCode() {
@@ -56,8 +69,15 @@ public class LicenseActivity extends AppCompatActivity {
                 showMessage(R.string.license_denied);
                 return;
             }
-            DeviceLicense.remember(this);
-            openApp();
+            Thread thread = new Thread(() -> {
+                DeviceLicense.remember(LicenseActivity.this);
+                runOnUiThread(() -> {
+                    if (!isFinishing()) {
+                        openApp();
+                    }
+                });
+            }, "langfree-license-save");
+            thread.start();
         }));
     }
 

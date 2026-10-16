@@ -81,19 +81,22 @@ public class SetupActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if (!DeviceLicense.isAccepted(this)) {
-            goToLicense();
-            return;
-        }
-        DeviceLicense.checkAsync(this, (allowed, reachable) -> runOnUiThread(() -> {
-            if (reachable && !allowed && !isFinishing()) {
-                DeviceLicense.clear(this);
-                goToLicense();
-            }
-        }));
-        // L'accueil ne garde pas le modèle en mémoire : le chat le rechargera.
-        viewModel.releaseModel();
-        viewModel.refresh();
+        Thread thread = new Thread(() -> {
+            boolean stored = DeviceLicense.isStored(this);
+            runOnUiThread(() -> {
+                if (isFinishing()) {
+                    return;
+                }
+                if (!stored) {
+                    goToLicense();
+                    return;
+                }
+                // L'accueil ne garde pas le modèle en mémoire : le chat le rechargera.
+                viewModel.releaseModel();
+                viewModel.refresh();
+            });
+        }, "langfree-license-local");
+        thread.start();
     }
 
     private void goToLicense() {
