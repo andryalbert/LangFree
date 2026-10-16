@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Speak &amp; Grow</string>
+    <string name="license_intro">Cette application ne s\'ouvre que sur un téléphone autorisé. Envoyez le code ci-dessous à la personne qui vous l\'a installée, puis appuyez sur Vérifier.</string>
+    <string name="license_code_label">Code de ce téléphone</string>
+    <string name="license_copy">Copier le code</string>
+    <string name="license_copied">Code copié.</string>
+    <string name="license_verify">Vérifier</string>
+    <string name="license_denied">Ce téléphone n\'est pas encore autorisé. Envoyez le code, puis vérifiez à nouveau une fois qu\'il a été ajouté.</string>
+    <string name="license_offline">Pas de connexion. Internet est nécessaire pour cette vérification.</string>
     <string name="tagline">Discutez en anglais, hors ligne</string>
     <string name="setup_intro">Speak &amp; Grow corrige vos phrases, explique l\'erreur en français, puis continue la conversation en anglais. Tout se passe sur le téléphone.</string>
     <string name="model_absent">Aucun modèle IA n\'est installé. Importez un fichier Gemma (.task ou .bin) ou téléchargez Gemma 3 1B.</string>

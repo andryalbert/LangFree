@@ -14,6 +14,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 import com.langfree.R;
 import com.langfree.databinding.ActivitySetupBinding;
+import com.langfree.utils.DeviceLicense;
 import com.langfree.utils.ModelStorage;
 import com.langfree.viewmodel.SetupViewModel;
 
@@ -80,9 +81,25 @@ public class SetupActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        if (!DeviceLicense.isAccepted(this)) {
+            goToLicense();
+            return;
+        }
+        DeviceLicense.checkAsync(this, (allowed, reachable) -> runOnUiThread(() -> {
+            if (reachable && !allowed && !isFinishing()) {
+                DeviceLicense.clear(this);
+                goToLicense();
+            }
+        }));
         // L'accueil ne garde pas le modèle en mémoire : le chat le rechargera.
         viewModel.releaseModel();
         viewModel.refresh();
+    }
+
+    private void goToLicense() {
+        startActivity(new Intent(this, LicenseActivity.class)
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+        finish();
     }
 
     private void onFilePicked(Uri uri) {
