@@ -53,9 +53,19 @@
             android:parentActivityName=".ui.SetupActivity" />
 
         <activity
-            android:name=".ui.MistakesActivity"
+            android:name=".ui.LessonsActivity"
             android:exported="false"
             android:parentActivityName=".ui.SetupActivity" />
+
+        <activity
+            android:name=".ui.LessonActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.LessonsActivity" />
+
+        <activity
+            android:name=".ui.MistakesActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.LessonsActivity" />
 
         <activity
             android:name=".ui.ReviewActivity"

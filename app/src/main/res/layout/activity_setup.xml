@@ -121,12 +121,12 @@
             android:text="@string/history" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/mistakes"
+            android:id="@+id/lessons"
             style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@string/mistakes" />
+            android:text="@string/lessons" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/settings"

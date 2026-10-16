@@ -71,8 +71,8 @@ public class SetupActivity extends AppCompatActivity {
                 startActivity(new Intent(this, ChatActivity.class)));
         binding.history.setOnClickListener(v ->
                 startActivity(new Intent(this, HistoryActivity.class)));
-        binding.mistakes.setOnClickListener(v ->
-                startActivity(new Intent(this, MistakesActivity.class)));
+        binding.lessons.setOnClickListener(v ->
+                startActivity(new Intent(this, LessonsActivity.class)));
         binding.settings.setOnClickListener(v ->
                 startActivity(new Intent(this, SettingsActivity.class)));
     }

@@ -216,8 +216,8 @@ public class ChatActivity extends AppCompatActivity {
             startActivity(new Intent(this, HistoryActivity.class));
             return true;
         }
-        if (id == R.id.action_mistakes) {
-            startActivity(new Intent(this, MistakesActivity.class));
+        if (id == R.id.action_lessons) {
+            startActivity(new Intent(this, LessonsActivity.class));
             return true;
         }
         if (id == R.id.action_settings) {

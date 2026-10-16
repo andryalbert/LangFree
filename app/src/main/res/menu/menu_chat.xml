@@ -10,8 +10,8 @@
         android:title="@string/history"
         app:showAsAction="never" />
     <item
-        android:id="@+id/action_mistakes"
-        android:title="@string/mistakes"
+        android:id="@+id/action_lessons"
+        android:title="@string/lessons"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_settings"
