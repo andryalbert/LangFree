@@ -292,7 +292,7 @@ public class ChatActivity extends AppCompatActivity {
 
                 @Override
                 public void onError(int code, String message) {
-                    if (isSpeechPackMessage(code)) {
+                    if (isSpeechPackMessage(code) || code == SpeechRecognizer.ERROR_CLIENT) {
                         return;
                     }
                     snack(speechError(code));

@@ -25,6 +25,8 @@ public final class SpeechInput {
     private SpeechRecognizer recognizer;
     private Callback callback;
     private boolean listening;
+    /** Vrai après un arrêt volontaire (veille, réglages) : l'erreur du système ne doit pas s'afficher. */
+    private boolean ignoreErrors;
 
     public boolean isListening() {
         return listening;
@@ -36,6 +38,7 @@ public final class SpeechInput {
             return;
         }
         this.callback = callback;
+        ignoreErrors = false;
         if (recognizer == null) {
             recognizer = SpeechRecognizer.createSpeechRecognizer(context);
         }
@@ -72,9 +75,10 @@ public final class SpeechInput {
             @Override
             public void onError(int error) {
                 listening = false;
-                if (callback != null) {
-                    callback.onError(error, "code " + error);
+                if (ignoreErrors || callback == null) {
+                    return;
                 }
+                callback.onError(error, "code " + error);
             }
 
             @Override
@@ -109,17 +113,21 @@ public final class SpeechInput {
     }
 
     public void stop() {
+        ignoreErrors = true;
+        boolean wasListening = listening;
         listening = false;
-        if (recognizer != null) {
-            try {
-                recognizer.stopListening();
-            } catch (RuntimeException ignored) {
-                // Déjà arrêté.
-            }
+        if (recognizer == null || !wasListening) {
+            return;
+        }
+        try {
+            recognizer.stopListening();
+        } catch (RuntimeException ignored) {
+            // Déjà arrêté.
         }
     }
 
     public void release() {
+        ignoreErrors = true;
         listening = false;
         callback = null;
         if (recognizer != null) {
