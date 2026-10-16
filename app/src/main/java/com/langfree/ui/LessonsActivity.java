@@ -37,8 +37,8 @@ public class LessonsActivity extends AppCompatActivity {
             }
             addLesson(lesson);
         }
-        binding.notebook.setOnClickListener(v ->
-                startActivity(new Intent(this, MistakesActivity.class)));
+        binding.quiz.setOnClickListener(v ->
+                startActivity(new Intent(this, QuizActivity.class)));
     }
 
     private void addGuide() {

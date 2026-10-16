@@ -7,10 +7,14 @@ import android.database.sqlite.SQLiteDatabase;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.migration.Migration;
+import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.langfree.model.ChatMessage;
 import com.langfree.model.Conversation;
 import com.langfree.model.Mistake;
+import com.langfree.model.QuizSession;
+import com.langfree.model.QuizTurn;
 
 import java.io.File;
 
@@ -18,8 +22,8 @@ import java.io.File;
  * Base SQLite locale. Les conversations, messages et erreurs y sont stockés.
  */
 @Database(
-        entities = {Conversation.class, ChatMessage.class, Mistake.class},
-        version = 1,
+        entities = {Conversation.class, ChatMessage.class, Mistake.class, QuizSession.class, QuizTurn.class},
+        version = 2,
         exportSchema = false
 )
 public abstract class AppDatabase extends RoomDatabase {
@@ -32,6 +36,33 @@ public abstract class AppDatabase extends RoomDatabase {
 
     public abstract MistakeDao mistakeDao();
 
+    public abstract QuizSessionDao quizSessionDao();
+
+    public abstract QuizTurnDao quizTurnDao();
+
+    private static final Migration MIGRATION_1_2 = new Migration(1, 2) {
+        @Override
+        public void migrate(SupportSQLiteDatabase database) {
+            database.execSQL("CREATE TABLE IF NOT EXISTS `quiz_sessions` ("
+                    + "`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
+                    + "`startedAt` INTEGER NOT NULL, "
+                    + "`updatedAt` INTEGER NOT NULL, "
+                    + "`levelEstimate` TEXT, "
+                    + "`questionCount` INTEGER NOT NULL)");
+            database.execSQL("CREATE TABLE IF NOT EXISTS `quiz_turns` ("
+                    + "`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
+                    + "`sessionId` INTEGER NOT NULL, "
+                    + "`question` TEXT, "
+                    + "`answer` TEXT, "
+                    + "`correction` TEXT, "
+                    + "`explanation` TEXT, "
+                    + "`levelEstimate` TEXT, "
+                    + "`createdAt` INTEGER NOT NULL)");
+            database.execSQL("CREATE INDEX IF NOT EXISTS `index_quiz_turns_sessionId` "
+                    + "ON `quiz_turns` (`sessionId`)");
+        }
+    };
+
     public static AppDatabase getInstance(Context context) {
         if (instance == null) {
             synchronized (AppDatabase.class) {
@@ -39,6 +70,7 @@ public abstract class AppDatabase extends RoomDatabase {
                     Context app = context.getApplicationContext();
                     discardLegacyDatabase(app);
                     instance = Room.databaseBuilder(app, AppDatabase.class, NAME)
+                            .addMigrations(MIGRATION_1_2)
                             .fallbackToDestructiveMigration()
                             .build();
                 }

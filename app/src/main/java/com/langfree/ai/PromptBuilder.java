@@ -48,6 +48,38 @@ public final class PromptBuilder {
         return prompt;
     }
 
+    public static String quizQuestionPrompt(String level, String topic, java.util.List<String> previous) {
+        StringBuilder avoid = new StringBuilder();
+        if (previous != null) {
+            for (String question : previous) {
+                if (question != null && !question.trim().isEmpty()) {
+                    avoid.append("- ").append(question.trim()).append('\n');
+                }
+            }
+        }
+        String already = avoid.length() == 0
+                ? "No previous question."
+                : "Do not repeat these questions:\n" + avoid;
+        return "You are an English examiner. The learner is a French speaker around level " + level + ".\n"
+                + "Ask ONE short question in English about this topic: " + topic + ".\n"
+                + already
+                + "The question must invite a full sentence, not a yes or no.\n"
+                + "Reply with ONLY this line and nothing else:\n"
+                + "[QUESTION] your question\n";
+    }
+
+    public static String quizGradePrompt(String level, String question, String answer) {
+        return "You are an English examiner. The learner's profile is " + level + ".\n"
+                + "Question: " + question + "\n"
+                + "Learner answer: " + answer + "\n"
+                + "Correct the English and estimate the level shown by this answer alone.\n"
+                + "Reply in EXACTLY this format and nothing else:\n"
+                + "[CORRECTION] the corrected answer, or Perfect! if there is no mistake\n"
+                + "[EXPLICATION] one or two sentences in French explaining the mistakes\n"
+                + "[NIVEAU] only one of these codes: A1, A2, B1, B2, C1, C2\n"
+                + "Do not ask a new question. Do not write anything before [CORRECTION].";
+    }
+
     public static String exercisePrompt(String mistakesBlock) {
         return "You are an English teacher for a French speaker.\n"
                 + "The student often makes these mistakes:\n"

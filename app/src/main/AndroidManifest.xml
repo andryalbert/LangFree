@@ -63,6 +63,22 @@
             android:parentActivityName=".ui.LessonsActivity" />
 
         <activity
+            android:name=".ui.QuizActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.LessonsActivity"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".ui.QuizHistoryActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.QuizActivity" />
+
+        <activity
+            android:name=".ui.QuizDetailActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.QuizHistoryActivity" />
+
+        <activity
             android:name=".ui.MistakesActivity"
             android:exported="false"
             android:parentActivityName=".ui.LessonsActivity" />
