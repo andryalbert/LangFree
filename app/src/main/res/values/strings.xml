@@ -110,5 +110,6 @@
     <string name="cd_delete">Supprimer</string>
     <string name="cd_send">Envoyer le message</string>
     <string name="cd_mic">Dicter en anglais</string>
+    <string name="cd_mic_listening">Le micro écoute</string>
     <string name="cd_listen">Écouter la réponse en anglais</string>
 </resources>

@@ -3,6 +3,7 @@ package com.langfree.ui;
 import android.Manifest;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -176,6 +178,7 @@ public class ChatActivity extends AppCompatActivity {
     protected void onStop() {
         speechInput.stop();
         speechOutput.stop();
+        showMicListening(false);
         super.onStop();
     }
 
@@ -269,6 +272,7 @@ public class ChatActivity extends AppCompatActivity {
     private void onMicClicked() {
         if (speechInput.isListening()) {
             speechInput.stop();
+            showMicListening(false);
             return;
         }
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
@@ -281,10 +285,12 @@ public class ChatActivity extends AppCompatActivity {
 
     private void startListening() {
         speechOutput.stop();
+        showMicListening(true);
         try {
             speechInput.start(this, new SpeechInput.Callback() {
                 @Override
                 public void onResult(String text) {
+                    showMicListening(false);
                     if (!text.isEmpty()) {
                         viewModel.send(text);
                     }
@@ -292,6 +298,7 @@ public class ChatActivity extends AppCompatActivity {
 
                 @Override
                 public void onError(int code, String message) {
+                    showMicListening(false);
                     if (isSpeechPackMessage(code) || code == SpeechRecognizer.ERROR_CLIENT) {
                         return;
                     }
@@ -299,8 +306,26 @@ public class ChatActivity extends AppCompatActivity {
                 }
             });
         } catch (RuntimeException exception) {
+            showMicListening(false);
             snack(getString(R.string.error_mic_generic));
         }
+    }
+
+    /** Orange tant que le micro écoute, vert dès que la phrase part dans le fil. */
+    private void showMicListening(boolean listening) {
+        if (listening) {
+            binding.mic.setBackgroundResource(R.drawable.bg_mic_listening);
+            binding.mic.setImageTintList(ColorStateList.valueOf(
+                    ContextCompat.getColor(this, R.color.md_on_secondary)));
+            binding.mic.setContentDescription(getString(R.string.cd_mic_listening));
+            return;
+        }
+        TypedValue ripple = new TypedValue();
+        getTheme().resolveAttribute(android.R.attr.selectableItemBackgroundBorderless, ripple, true);
+        binding.mic.setBackgroundResource(ripple.resourceId);
+        binding.mic.setImageTintList(ColorStateList.valueOf(
+                ContextCompat.getColor(this, R.color.md_primary)));
+        binding.mic.setContentDescription(getString(R.string.cd_mic));
     }
 
     private String speechError(int code) {

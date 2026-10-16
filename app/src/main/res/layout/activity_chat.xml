@@ -75,7 +75,8 @@
                 android:layout_marginStart="4dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/cd_mic"
-                android:src="@drawable/ic_mic" />
+                android:src="@drawable/ic_mic"
+                android:tint="@color/md_primary" />
 
             <ImageButton
                 android:id="@+id/send"
